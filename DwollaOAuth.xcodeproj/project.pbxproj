@@ -53,6 +53,8 @@
 		1A611D9613BC113A00CE40A9 /* DwollaAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611D9313BC113A00CE40A9 /* DwollaAuthorizationController.m */; };
 		1A6120AE13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6120AC13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h */; };
 		1A6120AF13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6120AD13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m */; };
+		1A6120B213BC1FDE00CE40A9 /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6120B013BC1FDE00CE40A9 /* NSString+UUID.h */; };
+		1A6120B313BC1FDE00CE40A9 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,6 +109,8 @@
 		1A611DAB13BC195500CE40A9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		1A6120AC13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaHTTPURLConnection.h; sourceTree = "<group>"; };
 		1A6120AD13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaHTTPURLConnection.m; sourceTree = "<group>"; };
+		1A6120B013BC1FDE00CE40A9 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
+		1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +172,8 @@
 			isa = PBXGroup;
 			children = (
 				1A611BBF13BC03AA00CE40A9 /* DwollaOAuth-Prefix.pch */,
+				1A6120B013BC1FDE00CE40A9 /* NSString+UUID.h */,
+				1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -265,6 +271,7 @@
 				1A611D9113BC0D8500CE40A9 /* OAuthConsumer.h in Headers */,
 				1A611D9513BC113A00CE40A9 /* DwollaAuthorizationController.h in Headers */,
 				1A6120AE13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h in Headers */,
+				1A6120B213BC1FDE00CE40A9 /* NSString+UUID.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +343,7 @@
 				1A611D9013BC0D8500CE40A9 /* OATokenManager.m in Sources */,
 				1A611D9613BC113A00CE40A9 /* DwollaAuthorizationController.m in Sources */,
 				1A6120AF13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m in Sources */,
+				1A6120B313BC1FDE00CE40A9 /* NSString+UUID.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

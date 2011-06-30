@@ -7,8 +7,46 @@
 //
 
 #import "DwollaHTTPURLConnection.h"
+#import "NSString+UUID.h"
 
 
 @implementation DwollaHTTPURLConnection
 
+@synthesize request = dwollaRequest;
+
+- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate {
+    if( self == [super initWithRequest:request delegate:delegate] ) {
+        dwollaRequest = [request retain];
+        dwollaData = [[NSMutableData alloc] init];
+    }
+    return self;
+}
+
+- (void)dealloc {
+    [dwollaRequest release];
+    [dwollaData release];
+    [dwollaIdentifier release];
+    [super dealloc];
+}
+
+- (DwollaConnectionID *)identifier {
+    if( !dwollaIdentifier ) {
+        dwollaIdentifier = [[NSString stringWithNewUUID] retain];
+    }
+    return dwollaIdentifier;
+}
+
+- (NSData *)data {
+    return dwollaData;
+}
+
+- (void)appendData:(NSData *)data {
+    [dwollaData appendData:data];
+}
+
+- (void)resetData {
+    [dwollaData setLength:0];
+}
+
 @end
+

@@ -8,9 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
+#define DwollaConnectionID NSString
 
-@interface DwollaHTTPURLConnection : NSObject {
-    
+
+@interface DwollaHTTPURLConnection : NSURLConnection {
+    NSURLRequest*           dwollaRequest;
+    NSMutableData*          dwollaData;
+    DwollaConnectionID* dwollaIdentifier;
 }
+
+@property (nonatomic, readonly) DwollaConnectionID* identifier;
+@property (nonatomic, readonly) NSURLRequest* request;
+
+- (NSData *)data;
+- (void)appendData:(NSData *)data;
+- (void)resetData;
 
 @end

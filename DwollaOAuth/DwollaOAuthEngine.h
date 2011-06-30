@@ -12,6 +12,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OAuthConsumer.h"
+#import "DwollaHTTPURLConnection.h"
 
 extern NSString *const DwollaEngineRequestTokenNotification;
 extern NSString *const DwollaEngineAccessTokenNotification;
@@ -47,4 +48,5 @@ extern NSString *const DwollaEngineTokenKey;
 
 - (void)sendTokenRequestWithURL:(NSURL *)url token:(OAToken *)token onSuccess:(SEL)successSel onFail:(SEL)failSel;
 
+//- (DwollaConnectionID *)profileForCurrentUser;
 @end
