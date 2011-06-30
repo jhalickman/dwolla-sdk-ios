@@ -1,0 +1,226 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1A611BBC13BC03AA00CE40A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A611BBB13BC03AA00CE40A9 /* Foundation.framework */; };
+		1A611C1113BC057900CE40A9 /* DwollaOAuthEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */; };
+		1A611C1213BC057900CE40A9 /* DwollaOAuthEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */; };
+		1A611D3E13BC076700CE40A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A611D3D13BC076700CE40A9 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1A611BB813BC03AA00CE40A9 /* libDwollaOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDwollaOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A611BBB13BC03AA00CE40A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1A611BBF13BC03AA00CE40A9 /* DwollaOAuth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DwollaOAuth-Prefix.pch"; sourceTree = "<group>"; };
+		1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaOAuthEngine.h; sourceTree = "<group>"; };
+		1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaOAuthEngine.m; sourceTree = "<group>"; };
+		1A611D3D13BC076700CE40A9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1A611D4013BC08D700CE40A9 /* OAuthConsumer1 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = OAuthConsumer1; path = ../OAuthConsumer1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1A611BB513BC03AA00CE40A9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A611D3E13BC076700CE40A9 /* UIKit.framework in Frameworks */,
+				1A611BBC13BC03AA00CE40A9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A611BAD13BC03AA00CE40A9 = {
+			isa = PBXGroup;
+			children = (
+				1A611D4013BC08D700CE40A9 /* OAuthConsumer1 */,
+				1A611BBD13BC03AA00CE40A9 /* DwollaOAuth */,
+				1A611BBA13BC03AA00CE40A9 /* Frameworks */,
+				1A611BB913BC03AA00CE40A9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1A611BB913BC03AA00CE40A9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A611BB813BC03AA00CE40A9 /* libDwollaOAuth.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1A611BBA13BC03AA00CE40A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1A611D3D13BC076700CE40A9 /* UIKit.framework */,
+				1A611BBB13BC03AA00CE40A9 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A611BBD13BC03AA00CE40A9 /* DwollaOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */,
+				1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */,
+				1A611BBE13BC03AA00CE40A9 /* Supporting Files */,
+			);
+			path = DwollaOAuth;
+			sourceTree = "<group>";
+		};
+		1A611BBE13BC03AA00CE40A9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1A611BBF13BC03AA00CE40A9 /* DwollaOAuth-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1A611BB613BC03AA00CE40A9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A611C1113BC057900CE40A9 /* DwollaOAuthEngine.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1A611BB713BC03AA00CE40A9 /* DwollaOAuth */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1A611BC213BC03AA00CE40A9 /* Build configuration list for PBXNativeTarget "DwollaOAuth" */;
+			buildPhases = (
+				1A611BB413BC03AA00CE40A9 /* Sources */,
+				1A611BB513BC03AA00CE40A9 /* Frameworks */,
+				1A611BB613BC03AA00CE40A9 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DwollaOAuth;
+			productName = DwollaOAuth;
+			productReference = 1A611BB813BC03AA00CE40A9 /* libDwollaOAuth.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1A611BAF13BC03AA00CE40A9 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1A611BB213BC03AA00CE40A9 /* Build configuration list for PBXProject "DwollaOAuth" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1A611BAD13BC03AA00CE40A9;
+			productRefGroup = 1A611BB913BC03AA00CE40A9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1A611BB713BC03AA00CE40A9 /* DwollaOAuth */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1A611BB413BC03AA00CE40A9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1A611C1213BC057900CE40A9 /* DwollaOAuthEngine.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1A611BC013BC03AA00CE40A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		1A611BC113BC03AA00CE40A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		1A611BC313BC03AA00CE40A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/DwollaOAuth.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DwollaOAuth/DwollaOAuth-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1A611BC413BC03AA00CE40A9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/DwollaOAuth.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DwollaOAuth/DwollaOAuth-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1A611BB213BC03AA00CE40A9 /* Build configuration list for PBXProject "DwollaOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A611BC013BC03AA00CE40A9 /* Debug */,
+				1A611BC113BC03AA00CE40A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1A611BC213BC03AA00CE40A9 /* Build configuration list for PBXNativeTarget "DwollaOAuth" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1A611BC313BC03AA00CE40A9 /* Debug */,
+				1A611BC413BC03AA00CE40A9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1A611BAF13BC03AA00CE40A9 /* Project object */;
+}
