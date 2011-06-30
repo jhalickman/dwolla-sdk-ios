@@ -177,7 +177,7 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	parameter = [[OARequestParameter alloc] initWithName:@"oauth_version" value:@"1.0"] ;
     [parameterPairs addObject:[parameter URLEncodedNameValuePair]];
 	[parameter release];
-    parameter = [[OARequestParameter alloc] initWithName:@"oauth_version" value:consumer.scope] ;
+    parameter = [[OARequestParameter alloc] initWithName:@"scope" value:consumer.scope] ;
     [parameterPairs addObject:[parameter URLEncodedNameValuePair]];
 	[parameter release];
 	

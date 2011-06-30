@@ -81,4 +81,11 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)didReceiveRequestToken:(NSNotification *)notification {
+   // [self displayAuthorization];
+}
+- (void)didReceiveAccessToken:(NSNotification *)notification {
+   // [self success];
+}
+
 @end
