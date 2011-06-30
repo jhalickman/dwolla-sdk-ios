@@ -5,11 +5,18 @@
 //  Created by James Armstead on 6/29/11.
 //  Copyright 2011 Dwolla. All rights reserved.
 //
+//  Largely inspired by LinkedIn OAuth by Sixten Otto <https://github.com/ResultsDirect/LinkedIn-iPhone>
+//
 
 @class DwollaOAuthEngine;
 
 #import <Foundation/Foundation.h>
 #import "OAuthConsumer.h"
+
+extern NSString *const DwollaEngineRequestTokenNotification;
+extern NSString *const DwollaEngineAccessTokenNotification;
+extern NSString *const DwollaEngineAuthFailureNotification;
+extern NSString *const DwollaEngineTokenKey;
 
 @protocol DwollaOAuthEngineDelegate <NSObject>
 
@@ -31,7 +38,13 @@
     NSMutableDictionary* engineConnections; 
 }
 
+@property (nonatomic, readonly) BOOL isAuthorized;
+
 + (id)engineWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate;
 - (id)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate;
+
+- (void)requestRequestToken;
+
+- (void)sendTokenRequestWithURL:(NSURL *)url token:(OAToken *)token onSuccess:(SEL)successSel onFail:(SEL)failSel;
 
 @end
