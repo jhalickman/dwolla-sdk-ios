@@ -215,7 +215,7 @@
 		<string>IDEShowUtilities</string>
 		<string>IDEEditorArea</string>
 		<integer>0</integer>
-		<string>DwollaAuthorizationController.m</string>
+		<string>DwollaOAuthEngine.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -531,7 +531,7 @@
 		</dict>
 		<string>DwollaOAuth</string>
 		<string>DwollaOAuth</string>
-		<string>DwollaAuthorizationController.m</string>
+		<string>DwollaOAuthEngine.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -1269,7 +1269,7 @@
 				<integer>126</integer>
 			</dict>
 			<key>NS.string</key>
-			<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.m</string>
+			<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.m</string>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -1980,10 +1980,10 @@
 		<string>PrimaryDocumentVisibleCharacterRange</string>
 		<string>HideAllIssues</string>
 		<string>PrimaryDocumentSelectedCharacterRange</string>
-		<real>331093730.30029798</real>
-		<string>{39, 2048}</string>
-		<string>{1696, 0}</string>
-		<string>@implementation DwollaAuthorizationController</string>
+		<real>331094009.46872902</real>
+		<string>{1913, 2346}</string>
+		<string>{3835, 0}</string>
+		<string>-setRequestTokenFromTicket:data:</string>
 		<string>Xcode.IDEKit.EditorDocument.SourceCode</string>
 		<dict>
 			<key>$class</key>
@@ -2002,7 +2002,7 @@
 				<integer>195</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.m</string>
+		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.m</string>
 		<dict>
 			<key>$classes</key>
 			<array>
@@ -6760,9 +6760,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>331093672.012133</real>
-		<string>{680, 2611}</string>
-		<string>{3098, 0}</string>
+		<real>331094009.46642202</real>
+		<string>{1913, 2346}</string>
+		<string>{3835, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -6998,9 +6998,9 @@
 				</dict>
 			</array>
 		</dict>
-		<real>331093730.29796797</real>
-		<string>{39, 2048}</string>
-		<string>{1696, 0}</string>
+		<real>331093782.39876902</real>
+		<string>{303, 2021}</string>
+		<string>{597, 0}</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7141,7 +7141,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>331093653.037974</real>
+		<real>331093793.09498501</real>
 		<string>{0, 1833}</string>
 		<string>{1826, 0}</string>
 		<dict>
@@ -7427,7 +7427,7 @@
 				</dict>
 			</array>
 		</dict>
-		<real>331093701.01677603</real>
+		<real>331093791.01152402</real>
 		<string>{0, 1595}</string>
 		<string>{1435, 0}</string>
 		<dict>
@@ -7613,7 +7613,7 @@
 				</dict>
 				<dict>
 					<key>CF$UID</key>
-					<integer>640</integer>
+					<integer>58</integer>
 				</dict>
 			</array>
 		</dict>
@@ -7877,7 +7877,7 @@
 				<integer>657</integer>
 			</dict>
 			<key>NS.time</key>
-			<real>331093729.92394102</real>
+			<real>331093995.57057899</real>
 		</dict>
 		<dict>
 			<key>$classes</key>
@@ -7888,7 +7888,7 @@
 			<key>$classname</key>
 			<string>NSDate</string>
 		</dict>
-		<string>Today at 9:28 PM</string>
+		<string>Today at 9:33 PM</string>
 		<integer>106</integer>
 		<dict>
 			<key>$class</key>
@@ -7967,7 +7967,7 @@
 				<integer>663</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.m</string>
+		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -7985,7 +7985,7 @@
 				<integer>665</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.h</string>
+		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -8003,7 +8003,7 @@
 				<integer>667</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.m</string>
+		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.h</string>
 		<dict>
 			<key>$class</key>
 			<dict>
@@ -8021,7 +8021,7 @@
 				<integer>669</integer>
 			</dict>
 		</dict>
-		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaOAuthEngine.h</string>
+		<string>file://localhost/Projects/DwollaOAuth/DwollaOAuth/DwollaAuthorizationController.m</string>
 		<dict>
 			<key>$class</key>
 			<dict>

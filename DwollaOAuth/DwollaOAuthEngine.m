@@ -72,4 +72,28 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     OADataFetcher* fetcher = [[[OADataFetcher alloc] init] autorelease];	
     [fetcher fetchDataWithRequest:request delegate:self didFinishSelector:successSel didFailSelector:failSel];
 }
+
+//RESPONSES
+- (void)setRequestTokenFromTicket:(OAServiceTicket *)ticket data:(NSData *)data {
+    if (!ticket.didSucceed || !data) return;
+	
+	NSString *dataString = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
+	if (!dataString) return;
+	
+	[engineOAuthRequestToken release];
+	engineOAuthRequestToken = [[OAToken alloc] initWithHTTPResponseBody:dataString];
+    NSLog(@"  request token: %@", engineOAuthRequestToken.key);
+	
+    //if( rdOAuthVerifier.length ) engineOAuthRequestToken.pin = rdOAuthVerifier;
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:DwollaEngineRequestTokenNotification object:self
+     userInfo:[NSDictionary dictionaryWithObject:engineOAuthRequestToken forKey:DwollaEngineTokenKey]];
+}
+
+- (void)oauthTicketFailed:(OAServiceTicket *)ticket data:(NSData *)data {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:DwollaEngineAuthFailureNotification object:self];
+}
+
 @end
