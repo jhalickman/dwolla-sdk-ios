@@ -49,6 +49,8 @@
 		1A611D8F13BC0D8500CE40A9 /* OATokenManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611D6813BC0D8500CE40A9 /* OATokenManager.h */; };
 		1A611D9013BC0D8500CE40A9 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611D6913BC0D8500CE40A9 /* OATokenManager.m */; };
 		1A611D9113BC0D8500CE40A9 /* OAuthConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611D6A13BC0D8500CE40A9 /* OAuthConsumer.h */; };
+		1A611D9513BC113A00CE40A9 /* DwollaAuthorizationController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611D9213BC113A00CE40A9 /* DwollaAuthorizationController.h */; };
+		1A611D9613BC113A00CE40A9 /* DwollaAuthorizationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611D9313BC113A00CE40A9 /* DwollaAuthorizationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +100,8 @@
 		1A611D6913BC0D8500CE40A9 /* OATokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OATokenManager.m; sourceTree = "<group>"; };
 		1A611D6A13BC0D8500CE40A9 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		1A611D6B13BC0D8500CE40A9 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		1A611D9213BC113A00CE40A9 /* DwollaAuthorizationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaAuthorizationController.h; sourceTree = "<group>"; };
+		1A611D9313BC113A00CE40A9 /* DwollaAuthorizationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaAuthorizationController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 			children = (
 				1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */,
 				1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */,
+				1A611D9213BC113A00CE40A9 /* DwollaAuthorizationController.h */,
+				1A611D9313BC113A00CE40A9 /* DwollaAuthorizationController.m */,
 				1A611BBE13BC03AA00CE40A9 /* Supporting Files */,
 			);
 			path = DwollaOAuth;
@@ -249,6 +255,7 @@
 				1A611D8D13BC0D8500CE40A9 /* OAToken.h in Headers */,
 				1A611D8F13BC0D8500CE40A9 /* OATokenManager.h in Headers */,
 				1A611D9113BC0D8500CE40A9 /* OAuthConsumer.h in Headers */,
+				1A611D9513BC113A00CE40A9 /* DwollaAuthorizationController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +325,7 @@
 				1A611D8B13BC0D8500CE40A9 /* OAServiceTicket.m in Sources */,
 				1A611D8E13BC0D8500CE40A9 /* OAToken.m in Sources */,
 				1A611D9013BC0D8500CE40A9 /* OATokenManager.m in Sources */,
+				1A611D9613BC113A00CE40A9 /* DwollaAuthorizationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
