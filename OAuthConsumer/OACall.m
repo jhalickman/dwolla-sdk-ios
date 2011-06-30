@@ -119,7 +119,7 @@
 
 - (void)perform:(OAConsumer *)consumer
 		  token:(OAToken *)token
-		  realm:(NSString *)realm
+		  realm:(NSString *)realm 
 	   delegate:(NSObject <OACallDelegate> *)aDelegate
 	didFinish:(SEL)finished
 
@@ -130,7 +130,7 @@
 	request = [[OAMutableURLRequest alloc] initWithURL:url
 											  consumer:consumer
 												token:token
-												 realm:realm
+												 realm:realm 
 									 signatureProvider:nil];
 	if(method) {
 		[request setHTTPMethod:method];
@@ -139,11 +139,7 @@
 	if (self.parameters) {
 		[request setParameters:self.parameters];
 	}
-//	if (self.files) {
-//		for (NSString *key in self.files) {
-//			[request attachFileWithName:@"file" filename:NSLocalizedString(@"Photo.jpg", @"") data:[self.files objectForKey:key]];
-//		}
-//	}
+
 	fetcher = [[OADataFetcher alloc] init];
 	[fetcher fetchDataWithRequest:request
 						 delegate:self
@@ -151,20 +147,5 @@
 				  didFailSelector:@selector(callFailed:withError:)];
 }
 
-/*- (BOOL)isEqual:(id)object {
-	if ([object isKindOfClass:[self class]]) {
-		return [self isEqualToCall:(OACall *)object];
-	}
-	return NO;
-}
-
-- (BOOL)isEqualToCall:(OACall *)aCall {
-	return (delegate == aCall->delegate
-			&& finishedSelector == aCall->finishedSelector 
-			&& [url isEqualTo:aCall.url]
-			&& [method isEqualToString:aCall.method]
-			&& [parameters isEqualToArray:aCall.parameters]
-			&& [files isEqualToDictionary:aCall.files]);
-}*/
 
 @end

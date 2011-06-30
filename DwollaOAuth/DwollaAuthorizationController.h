@@ -38,6 +38,10 @@
 + (id)authorizationControllerWithEngine:(DwollaOAuthEngine *)engine delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
 
 - (id)initWithEngine:(DwollaOAuthEngine *)engine delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
-- (id)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
+- (id)initWithConsumerKey:(NSString *)consumerKey 
+           consumerSecret:(NSString *)consumerSecret 
+                     body:(NSString *)body 
+                 callback:(NSString *)callback 
+                 delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
 
 @end

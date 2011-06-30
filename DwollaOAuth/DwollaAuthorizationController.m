@@ -33,8 +33,18 @@
     return self;
 }
 
-- (id)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaAuthorizationControllerDelegate>)delegate {
-    return [self initWithEngine:[DwollaOAuthEngine engineWithConsumerKey:consumerKey consumerSecret:consumerSecret delegate:nil] delegate:delegate];
+- (id)initWithConsumerKey:(NSString *)consumerKey 
+           consumerSecret:(NSString *)consumerSecret 
+                     body:(NSString *)body 
+                 callback:(NSString *)callback 
+                 delegate:(id<DwollaAuthorizationControllerDelegate>)delegate {
+    
+    return [self initWithEngine:[DwollaOAuthEngine 
+                                 engineWithConsumerKey:consumerKey 
+                                 consumerSecret:consumerSecret 
+                                 body:body 
+                                 callback:callback
+                                 delegate:nil] delegate:delegate];
 }
 
 - (void)dealloc

@@ -23,12 +23,28 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 @implementation DwollaOAuthEngine
 
 
-    + (id)engineWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate {
-        return [[[self alloc] initWithConsumerKey:consumerKey consumerSecret:consumerSecret delegate:delegate] autorelease];
+    + (id)engineWithConsumerKey:(NSString *)consumerKey 
+                 consumerSecret:(NSString *)consumerSecret 
+                           body:(NSString *)body 
+                       callback:(NSString *)callback 
+                       delegate:(id<DwollaOAuthEngineDelegate>)delegate {
+        
+        return [[[self alloc] initWithConsumerKey:consumerKey 
+                                   consumerSecret:consumerSecret 
+                                             body:body 
+                                         callback:callback 
+                                         delegate:delegate] autorelease];
+        
     }
 
-    - (id)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate {
+    - (id)initWithConsumerKey:(NSString *)consumerKey 
+               consumerSecret:(NSString *)consumerSecret 
+                         body:(NSString *)body 
+                     callback:(NSString *)callback 
+                     delegate:(id<DwollaOAuthEngineDelegate>)delegate {
         if( self == [super init] ) {
+            engineBody = body;
+            engineCallback = callback;
             engineDelegate = delegate;
             engineOAuthConsumer = [[OAConsumer alloc] initWithKey:consumerKey secret:consumerSecret];
             engineConnections = [[NSMutableDictionary alloc] init];
@@ -56,14 +72,26 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 //REQUESTS
 - (void)requestRequestToken {
 	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthRequestTokenURL]
-                            token:nil
+                            token:nil 
+                             body:engineBody 
+                         callback:engineCallback
                         onSuccess:@selector(setRequestTokenFromTicket:data:)
                            onFail:@selector(oauthTicketFailed:data:)];
 }
 
 
-- (void)sendTokenRequestWithURL:(NSURL *)url token:(OAToken *)token onSuccess:(SEL)successSel onFail:(SEL)failSel {
-    OAMutableURLRequest* request = [[[OAMutableURLRequest alloc] initWithURL:url consumer:engineOAuthConsumer token:token realm:nil signatureProvider:nil] autorelease];
+- (void)sendTokenRequestWithURL:(NSURL *)url 
+                          token:(OAToken *)token 
+                           body:(NSString *) callBody 
+                       callback:(NSString *) callCallback
+                      onSuccess:(SEL)successSel 
+                         onFail:(SEL)failSel {
+    OAMutableURLRequest* request = [[[OAMutableURLRequest alloc] 
+                                     initWithURL:url 
+                                     consumer:engineOAuthConsumer 
+                                     token:token 
+                                     realm:nil 
+                                     signatureProvider:nil] autorelease];
 	if( !request ) return;
 	
     [request setHTTPMethod:@"POST"];

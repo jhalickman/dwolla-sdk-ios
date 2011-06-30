@@ -37,16 +37,32 @@ extern NSString *const DwollaEngineTokenKey;
     OAToken*    engineOAuthAccessToken;
     NSString*   engineOAuthVerifier;
     NSMutableDictionary* engineConnections; 
+    NSString* engineBody;
+    NSString* engineCallback;
 }
 
 @property (nonatomic, readonly) BOOL isAuthorized;
 
-+ (id)engineWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate;
-- (id)initWithConsumerKey:(NSString *)consumerKey consumerSecret:(NSString *)consumerSecret delegate:(id<DwollaOAuthEngineDelegate>)delegate;
++ (id)engineWithConsumerKey:(NSString *)consumerKey 
+             consumerSecret:(NSString *)consumerSecret 
+                       body:(NSString *) body 
+                   callback:(NSString *) callback
+                   delegate:(id<DwollaOAuthEngineDelegate>)delegate;
+
+- (id)initWithConsumerKey:(NSString *)consumerKey 
+           consumerSecret:(NSString *)consumerSecret 
+                     body:(NSString *) body 
+                 callback:(NSString *) callback
+                 delegate:(id<DwollaOAuthEngineDelegate>)delegate ;
 
 - (void)requestRequestToken;
 
-- (void)sendTokenRequestWithURL:(NSURL *)url token:(OAToken *)token onSuccess:(SEL)successSel onFail:(SEL)failSel;
+- (void)sendTokenRequestWithURL:(NSURL *)url 
+                          token:(OAToken *)token 
+                           body:(NSString *) callBody 
+                       callback:(NSString *) callCallback
+                      onSuccess:(SEL)successSel 
+                         onFail:(SEL)failSel;
 
 //- (DwollaConnectionID *)profileForCurrentUser;
 @end

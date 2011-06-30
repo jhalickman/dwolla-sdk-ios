@@ -42,6 +42,8 @@
     id<OASignatureProviding> signatureProvider;
     NSString *nonce;
     NSString *timestamp;
+    NSString *body;
+    NSString *callback;
 }
 @property(readonly) NSString *signature;
 @property(readonly) NSString *nonce;

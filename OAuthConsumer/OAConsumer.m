@@ -27,14 +27,19 @@
 
 
 @implementation OAConsumer
-@synthesize key, secret;
+@synthesize key, secret, body, callback;
 
 #pragma mark init
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret {
+- (id)initWithKey:(NSString *)aKey 
+           secret:(NSString *)aSecret 
+             body:(NSString *)aBody 
+         callback:(NSString *)aCallback{
 	if ((self = [super init])) {
 		self.key = aKey;
 		self.secret = aSecret;
+        self.body = aBody;
+        self.callback = aCallback;
 	}
 	return self;
 }
@@ -42,6 +47,8 @@
 - (void)dealloc {
 	[key release];
 	[secret release];
+    [body release];
+    [callback release];
 	[super dealloc];
 }
 
@@ -54,7 +61,9 @@
 
 - (BOOL)isEqualToConsumer:(OAConsumer *)aConsumer {
 	return ([self.key isEqualToString:aConsumer.key] &&
-			[self.secret isEqualToString:aConsumer.secret]);
+			[self.secret isEqualToString:aConsumer.secret] &&
+            [self.body isEqualToString:aConsumer.body] &&
+            [self.callback isEqualToString:aConsumer.callback]);
 }
 
 @end
