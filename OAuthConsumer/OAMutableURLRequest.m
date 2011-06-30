@@ -130,7 +130,9 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [self setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
    
-    [self setHTTPBodyWithString:consumer.body];
+    NSString *scope = [NSString stringWithFormat:@"scope=%@", [@"AccountAPI:AccountInfoFull" encodedURLParameterString]];
+    
+    [self setHTTPBodyWithString:scope];
 }
 
 - (void)_generateTimestamp {
@@ -175,7 +177,11 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	parameter = [[OARequestParameter alloc] initWithName:@"oauth_version" value:@"1.0"] ;
     [parameterPairs addObject:[parameter URLEncodedNameValuePair]];
 	[parameter release];
+    parameter = [[OARequestParameter alloc] initWithName:@"oauth_version" value:consumer.scope] ;
+    [parameterPairs addObject:[parameter URLEncodedNameValuePair]];
+	[parameter release];
 	
+    
 	for(NSString *k in tokenParameters) {
 		[parameterPairs addObject:[[OARequestParameter requestParameter:k value:[tokenParameters objectForKey:k]] URLEncodedNameValuePair]];
 	}
@@ -209,11 +215,10 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     [parameterPairs release];
 	//	NSLog(@"Normalized: %@", normalizedRequestParameters);
     // OAuth Spec, Section 9.1.2 "Concatenate Request Elements"
-    return [NSString stringWithFormat:@"%@&%@&%@&%@",
+    return [NSString stringWithFormat:@"%@&%@&%@",
             [self HTTPMethod],
             [[[self URL] URLStringWithoutQuery] encodedURLParameterString],
-            [normalizedRequestParameters encodedURLString],
-            [consumer.body encodedURLString]];
+            [normalizedRequestParameters encodedURLString]];
 }
 
 - (void) dealloc

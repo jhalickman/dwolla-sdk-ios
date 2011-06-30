@@ -40,7 +40,7 @@
 - (id)initWithEngine:(DwollaOAuthEngine *)engine delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
 - (id)initWithConsumerKey:(NSString *)consumerKey 
            consumerSecret:(NSString *)consumerSecret 
-                     body:(NSString *)body 
+                     scope:(NSString *)scope 
                  callback:(NSString *)callback 
                  delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
 

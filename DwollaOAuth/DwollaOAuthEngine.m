@@ -25,13 +25,13 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
     + (id)engineWithConsumerKey:(NSString *)consumerKey 
                  consumerSecret:(NSString *)consumerSecret 
-                           body:(NSString *)body 
+                           scope:(NSString *)scope 
                        callback:(NSString *)callback 
                        delegate:(id<DwollaOAuthEngineDelegate>)delegate {
         
         return [[[self alloc] initWithConsumerKey:consumerKey 
                                    consumerSecret:consumerSecret 
-                                             body:body 
+                                             scope:scope 
                                          callback:callback 
                                          delegate:delegate] autorelease];
         
@@ -39,14 +39,16 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
     - (id)initWithConsumerKey:(NSString *)consumerKey 
                consumerSecret:(NSString *)consumerSecret 
-                         body:(NSString *)body 
+                         scope:(NSString *)scope 
                      callback:(NSString *)callback 
                      delegate:(id<DwollaOAuthEngineDelegate>)delegate {
         if( self == [super init] ) {
-            engineBody = body;
-            engineCallback = callback;
             engineDelegate = delegate;
-            engineOAuthConsumer = [[OAConsumer alloc] initWithKey:consumerKey secret:consumerSecret];
+            engineOAuthConsumer = [[OAConsumer alloc] 
+                                   initWithKey:consumerKey 
+                                   secret:consumerSecret 
+                                   scope:scope 
+                                   callback:callback];
             engineConnections = [[NSMutableDictionary alloc] init];
         }
         return self;
@@ -73,8 +75,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 - (void)requestRequestToken {
 	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthRequestTokenURL]
                             token:nil 
-                             body:engineBody 
-                         callback:engineCallback
                         onSuccess:@selector(setRequestTokenFromTicket:data:)
                            onFail:@selector(oauthTicketFailed:data:)];
 }
@@ -82,8 +82,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
 - (void)sendTokenRequestWithURL:(NSURL *)url 
                           token:(OAToken *)token 
-                           body:(NSString *) callBody 
-                       callback:(NSString *) callCallback
                       onSuccess:(SEL)successSel 
                          onFail:(SEL)failSel {
     OAMutableURLRequest* request = [[[OAMutableURLRequest alloc] 

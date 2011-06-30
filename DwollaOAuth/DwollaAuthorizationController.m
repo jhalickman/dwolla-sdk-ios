@@ -35,14 +35,14 @@
 
 - (id)initWithConsumerKey:(NSString *)consumerKey 
            consumerSecret:(NSString *)consumerSecret 
-                     body:(NSString *)body 
+                     scope:(NSString *)scope 
                  callback:(NSString *)callback 
                  delegate:(id<DwollaAuthorizationControllerDelegate>)delegate {
     
     return [self initWithEngine:[DwollaOAuthEngine 
                                  engineWithConsumerKey:consumerKey 
                                  consumerSecret:consumerSecret 
-                                 body:body 
+                                 scope:scope 
                                  callback:callback
                                  delegate:nil] delegate:delegate];
 }
