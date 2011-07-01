@@ -13,7 +13,7 @@
 static NSString *const dwollaAPIBaseURL           = @"https://www.dwolla.com/oauth/OAuth.ashx";
 static NSString *const dwollaOAuthRequestTokenURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
 //static NSString *const dwollaOAuthAccessTokenURL  = @"https://api.linkedin.com/uas/oauth/accessToken";
-//static NSString *const dwollaOAuthAuthorizeURL    = @"https://www.linkedin.com/uas/oauth/authorize";
+static NSString *const dwollaOAuthAuthorizeURL    = @"https://www.dwolla.com/oauth/OAuth.ashx";
 
 NSString *const DwollaEngineRequestTokenNotification = @"DwollaEngineRequestTokenNotification";
 NSString *const DwollaEngineAccessTokenNotification  = @"DwollaEngineAccessTokenNotification";
@@ -120,6 +120,16 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 - (void)oauthTicketFailed:(OAServiceTicket *)ticket data:(NSData *)data {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:DwollaEngineAuthFailureNotification object:self];
+}
+
+//HELPERS
+- (BOOL)hasRequestToken {
+	return (engineOAuthRequestToken.key && engineOAuthRequestToken.secret);
+}
+- (NSURLRequest *)authorizationFormURLRequest {
+	OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:dwollaOAuthAuthorizeURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
+	[request setParameters: [NSArray arrayWithObject: [[[OARequestParameter alloc] initWithName:@"oauth_token" value:engineOAuthRequestToken.key] autorelease]]];	
+    return request;
 }
 
 @end

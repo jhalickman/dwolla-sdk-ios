@@ -24,7 +24,7 @@
 @end
 
 
-@interface DwollaAuthorizationController : UIViewController {
+@interface DwollaAuthorizationController : UIViewController <UIWebViewDelegate> {
     id<DwollaAuthorizationControllerDelegate> authorizationDelegate;
     DwollaOAuthEngine* dwollaEngine;
 	UINavigationBar*  authorizationNavBar;

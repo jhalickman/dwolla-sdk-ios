@@ -40,6 +40,7 @@ extern NSString *const DwollaEngineTokenKey;
 }
 
 @property (nonatomic, readonly) BOOL isAuthorized;
+@property (nonatomic, readonly) BOOL hasRequestToken;
 
 + (id)engineWithConsumerKey:(NSString *)consumerKey 
              consumerSecret:(NSString *)consumerSecret 
@@ -59,6 +60,7 @@ extern NSString *const DwollaEngineTokenKey;
                           token:(OAToken *)token
                       onSuccess:(SEL)successSel 
                          onFail:(SEL)failSel;
+- (NSURLRequest *)authorizationFormURLRequest;
 
 //- (DwollaConnectionID *)profileForCurrentUser;
 @end
