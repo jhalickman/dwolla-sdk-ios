@@ -110,7 +110,7 @@
 }
 
 - (void)didReceiveRequestToken:(NSNotification *)notification {
-   // [self displayAuthorization];
+    [self displayAuthorization];
 }
 - (void)didReceiveAccessToken:(NSNotification *)notification {
    // [self success];
