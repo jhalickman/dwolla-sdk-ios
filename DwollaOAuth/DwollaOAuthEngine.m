@@ -127,8 +127,8 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 	return (engineOAuthRequestToken.key && engineOAuthRequestToken.secret);
 }
 - (NSURLRequest *)authorizationFormURLRequest {
-	OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:dwollaOAuthAuthorizeURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
-	[request setParameters: [NSArray arrayWithObject: [[[OARequestParameter alloc] initWithName:@"oauth_token" value:engineOAuthRequestToken.key] autorelease]]];	
+    NSString* testURL = [NSString stringWithFormat: @"%@?oauth_token=%@", dwollaOAuthAuthorizeURL, engineOAuthRequestToken.key];
+	OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:testURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
     return request;
 }
 

@@ -130,9 +130,10 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [self setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
    
-    NSString *scope = [NSString stringWithFormat:@"scope=%@", [@"AccountAPI:AccountInfoFull" encodedURLParameterString]];
+    NSString *scope = [NSString stringWithFormat:@"scope=%@", [consumer.scope encodedURLParameterString]];
     
-    [self setHTTPBodyWithString:scope];
+    [self setHTTPBody:[[[NSString alloc] initWithString: scope] 
+                                 dataUsingEncoding: NSASCIIStringEncoding]];
 }
 
 - (void)_generateTimestamp {

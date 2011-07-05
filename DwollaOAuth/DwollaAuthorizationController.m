@@ -118,7 +118,8 @@
 
 - (void)displayAuthorization {
     if( dwollaEngine.hasRequestToken ) {
-        [authorizationWebView loadRequest:[dwollaEngine authorizationFormURLRequest]];
+        NSURLRequest *test = [dwollaEngine authorizationFormURLRequest];
+        [authorizationWebView  loadRequest:test];
     }
 }
 
