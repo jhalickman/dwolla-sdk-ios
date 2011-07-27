@@ -58,7 +58,7 @@
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     
     authorizationNavBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
-    [authorizationNavBar setItems:[NSArray arrayWithObject:[[[UINavigationItem alloc] initWithTitle:@"LinkedIn Authorization"] autorelease]]];
+    [authorizationNavBar setItems:[NSArray arrayWithObject:[[[UINavigationItem alloc] initWithTitle:@"Dwolla Grid"] autorelease]]];
     authorizationNavBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
     [authorizationNavBar sizeToFit];
     authorizationNavBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, authorizationNavBar.frame.size.height);
@@ -75,9 +75,20 @@
     [self displayAuthorization];
 }
 
-- (void)dealloc
-{
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    authorizationDelegate = nil;
+    [dwollaEngine release];
     [super dealloc];
+}
+
+-(void) cancel:(id) sender 
+{
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [cookieJar cookies]) {
+        NSLog(@"%@", cookie);
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -96,11 +107,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+- (void)viewDidUnload {
+    [authorizationNavBar release];
+    authorizationNavBar = nil;
+    [authorizationWebView release];
+    authorizationWebView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -113,13 +124,70 @@
     [self displayAuthorization];
 }
 - (void)didReceiveAccessToken:(NSNotification *)notification {
-   // [self success];
+    [self success];
+}
+
+- (void)success {
+	if( [authorizationDelegate respondsToSelector:@selector(dwollaAuthorizationControllerSucceeded:)] ) {
+        [authorizationDelegate dwollaAuthorizationControllerSucceeded:self];
+    }
+	[self performSelector:@selector(hideSplash) withObject:nil afterDelay:1.0];
+}
+
+- (void) hideSplash {
+    //[self dismissModalViewControllerAnimated:NO];
+    //[[self parentViewController] dismissModalViewControllerAnimated:YES];
+    //[self dismissModalViewControllerAnimated:YES];
+}
+
+- (BOOL)extractInfoFromHTTPRequest:(NSURLRequest *)request {
+	if( !request ) return NO;
+	
+	NSArray* tuples = [[request.URL query] componentsSeparatedByString: @"&"];
+	for( NSString *tuple in tuples ) {
+		NSArray *keyValueArray = [tuple componentsSeparatedByString: @"="];
+		
+		if( keyValueArray.count == 2 ) {
+			NSString* key   = [keyValueArray objectAtIndex: 0];
+			NSString* value = [keyValueArray objectAtIndex: 1];
+			
+			if( [key isEqualToString:@"oauth_verifier"] ) {
+                [dwollaEngine setTheVerifier: value];
+                return YES;
+            }
+		}
+	}
+	
+	return NO;
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)req navigationType:(UIWebViewNavigationType)navigationType {
+    
+    NSMutableURLRequest *request = (NSMutableURLRequest *)req; 
+    
+    NSString* host = [[request.URL host] lowercaseString];
+    if( [[[dwollaEngine consumer] strippedCallback] isEqualToString:host] ) {
+        if( [self extractInfoFromHTTPRequest:request] ) {
+            [dwollaEngine requestAccessToken];
+        }
+        else {
+            return NO;
+        }
+        
+    }
+    
+    return YES;
 }
 
 - (void)displayAuthorization {
     if( dwollaEngine.hasRequestToken ) {
         NSURLRequest *test = [dwollaEngine authorizationFormURLRequest];
-        [authorizationWebView  loadRequest:test];
+        //Create a URL object.
+        NSURL *url = [NSURL URLWithString:[[test URL] absoluteString]];
+        
+        //URL Requst Object
+        test = [NSURLRequest requestWithURL:url];
+        [authorizationWebView loadRequest:test];
     }
 }
 

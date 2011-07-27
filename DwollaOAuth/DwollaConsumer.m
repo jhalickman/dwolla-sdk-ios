@@ -23,18 +23,24 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "OAConsumer.h"
+#import "DwollaConsumer.h"
 
 
-@implementation OAConsumer
-@synthesize key, secret;
+@implementation DwollaConsumer
+
+@synthesize scope, callback;
 
 #pragma mark init
 
-- (id)initWithKey:(NSString *)aKey secret:(NSString *)aSecret {
+- (id)initWithKey:(NSString *)aKey 
+           secret:(NSString *)aSecret 
+            scope:(NSString *)aScope 
+         callback:(NSString *)aCallback{
 	if ((self = [super init])) {
 		self.key = aKey;
 		self.secret = aSecret;
+        self.scope = aScope;
+        self.callback = aCallback;
 	}
 	return self;
 }
@@ -42,6 +48,8 @@
 - (void)dealloc {
 	[key release];
 	[secret release];
+    [scope release];
+    [callback release];
 	[super dealloc];
 }
 
@@ -52,9 +60,21 @@
 	return NO;
 }
 
-- (BOOL)isEqualToConsumer:(OAConsumer *)aConsumer {
+- (BOOL)isEqualToConsumer:(DwollaConsumer *)aConsumer {
 	return ([self.key isEqualToString:aConsumer.key] &&
-			[self.secret isEqualToString:aConsumer.secret]);
+			[self.secret isEqualToString:aConsumer.secret] &&
+            [self.scope isEqualToString:aConsumer.scope] &&
+            [self.callback isEqualToString:aConsumer.callback]);
+}
+
+- (NSString *) strippedCallback 
+{
+    NSString *tempURL = callback;
+    tempURL = [tempURL stringByReplacingOccurrencesOfString:@"/"
+                                                 withString:@""];
+    tempURL = [tempURL stringByReplacingOccurrencesOfString:@"http:"
+                                                 withString:@""];
+    return tempURL;
 }
 
 @end

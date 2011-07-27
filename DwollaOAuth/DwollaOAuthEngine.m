@@ -9,10 +9,10 @@
 //
 
 #import "DwollaOAuthEngine.h"
-
-static NSString *const dwollaAPIBaseURL           = @"https://www.dwolla.com/oauth/OAuth.ashx";
+                                                     
+static NSString *const dwollaAPIBaseURL           = @"https://www.dwolla.com/oauth/rest/";
 static NSString *const dwollaOAuthRequestTokenURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
-//static NSString *const dwollaOAuthAccessTokenURL  = @"https://api.linkedin.com/uas/oauth/accessToken";
+static NSString *const dwollaOAuthAccessTokenURL  = @"https://www.dwolla.com/oauth/OAuth.ashx";
 static NSString *const dwollaOAuthAuthorizeURL    = @"https://www.dwolla.com/oauth/OAuth.ashx";
 
 NSString *const DwollaEngineRequestTokenNotification = @"DwollaEngineRequestTokenNotification";
@@ -20,8 +20,27 @@ NSString *const DwollaEngineAccessTokenNotification  = @"DwollaEngineAccessToken
 NSString *const DwollaEngineAuthFailureNotification  = @"DwollaEngineAuthFailureNotification";
 NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
+
+@interface DwollaOAuthEngine ()
+
+- (DwollaConnectionID *)sendAPIRequestWithURL:(NSURL *)url HTTPMethod:(NSString *)method body:(NSData *)body;
+- (void)sendTokenRequestWithURL:(NSURL *)url token:(DwollaToken *)token onSuccess:(SEL)successSel onFail:(SEL)failSel;
+
+@end
+
 @implementation DwollaOAuthEngine
 
+- (void)dealloc {
+    engineDelegate = nil;
+    [engineOAuthConsumer release];
+    [engineOAuthRequestToken release];
+    [engineOAuthAccessToken release];
+    [engineOAuthVerifier release];
+    [engineConnections release];
+    [super dealloc];
+}
+
+@synthesize verifier = engineOAuthVerifier, consumer = engineOAuthConsumer;
 
     + (id)engineWithConsumerKey:(NSString *)consumerKey 
                  consumerSecret:(NSString *)consumerSecret 
@@ -44,7 +63,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
                      delegate:(id<DwollaOAuthEngineDelegate>)delegate {
         if( self == [super init] ) {
             engineDelegate = delegate;
-            engineOAuthConsumer = [[OAConsumer alloc] 
+            engineOAuthConsumer = [[DwollaConsumer alloc] 
                                    initWithKey:consumerKey 
                                    secret:consumerSecret 
                                    scope:scope 
@@ -54,7 +73,40 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
         return self;
     }
 
-//AUTHORIZATION
+
+- (void) setTheVerifier:(NSString *)newVerifier
+{
+    [self setVerifier: newVerifier];
+    [engineOAuthRequestToken setVerifier: newVerifier];
+}
+
+#pragma mark connection methods
+
+- (NSUInteger)numberOfConnections {
+    return [engineConnections count];
+}
+
+- (NSArray *)connectionIdentifiers {
+    return [engineConnections allKeys];
+}
+
+- (void)closeConnection:(DwollaHTTPURLConnection *)connection {
+    if( connection ) {
+        [connection cancel];
+        [engineConnections removeObjectForKey:connection.identifier];
+    }
+}
+
+- (void)closeConnectionWithID:(DwollaConnectionID *)identifier {
+    [self closeConnection:[engineConnections objectForKey:identifier]];
+}
+
+- (void)closeAllConnections {
+    [[engineConnections allValues] makeObjectsPerformSelector:@selector(cancel)];
+    [engineConnections removeAllObjects];
+}
+
+#pragma mark authorization methods
 - (BOOL)isAuthorized {
 	if( engineOAuthAccessToken.key && engineOAuthAccessToken.secret ) return YES;
 	
@@ -71,7 +123,10 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 	return NO;
 }
 
-//REQUESTS
+- (BOOL)hasRequestToken {
+	return (engineOAuthRequestToken.key && engineOAuthRequestToken.secret);
+}
+
 - (void)requestRequestToken {
 	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthRequestTokenURL]
                             token:nil 
@@ -79,12 +134,67 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
                            onFail:@selector(oauthTicketFailed:data:)];
 }
 
+- (void)requestAccessToken {
+	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthAccessTokenURL]
+                            token:engineOAuthRequestToken
+                        onSuccess:@selector(setAccessTokenFromTicket:data:)
+                           onFail:@selector(oauthTicketFailed:data:)];
+}
+- (NSURLRequest *)authorizationFormURLRequest {
+    NSString* testURL = [NSString stringWithFormat: @"%@?oauth_token=%@", dwollaOAuthAuthorizeURL, engineOAuthRequestToken.key];
+	DwollaMutableURLRequest *request = [[[DwollaMutableURLRequest alloc] initWithURL:[NSURL URLWithString:testURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
+    return request;
+}
+
+#pragma mark account methods
+- (DwollaConnectionID *)accountInformationCurrentUser {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/balance"]];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+
+#pragma mark private
+
+- (DwollaConnectionID *)sendAPIRequestWithURL:(NSURL *)url HTTPMethod:(NSString *)method body:(NSData *)body {
+    if( !self.isAuthorized ) return nil;
+    //NSLog(@"sending API request to %@", url);
+    
+	// create and configure the URL request
+    DwollaMutableURLRequest* request = [[[DwollaMutableURLRequest alloc] initWithURL:url
+                                                                    consumer:engineOAuthConsumer 
+                                                                       token:engineOAuthAccessToken 
+                                                                       realm:nil
+                                                           signatureProvider:nil] autorelease];
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    if( method ) {
+        [request setHTTPMethod:method];
+    }
+
+    [request prepare];
+    if( [body length] ) { 
+        [request setHTTPBody:body];
+    }
+    
+    // initiate a URL connection with this request
+    DwollaHTTPURLConnection* connection = [[[DwollaHTTPURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+    if( connection ) {
+        [engineConnections setObject:connection forKey:connection.identifier];
+    }
+    
+    return connection.identifier;
+}
+
+- (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection {
+    //NSLog([NSString stringWithFormat:@"%@",[connection data]]);
+}
 
 - (void)sendTokenRequestWithURL:(NSURL *)url 
-                          token:(OAToken *)token 
+                          token:(DwollaToken *)token 
                       onSuccess:(SEL)successSel 
                          onFail:(SEL)failSel {
-    OAMutableURLRequest* request = [[[OAMutableURLRequest alloc] 
+    DwollaMutableURLRequest* request = [[[DwollaMutableURLRequest alloc] 
                                      initWithURL:url 
                                      consumer:engineOAuthConsumer 
                                      token:token 
@@ -99,7 +209,11 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     [fetcher fetchDataWithRequest:request delegate:self didFinishSelector:successSel didFailSelector:failSel];
 }
 
-//RESPONSES
+- (void)oauthTicketFailed:(OAServiceTicket *)ticket data:(NSData *)data {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:DwollaEngineAuthFailureNotification object:self];
+}
+
 - (void)setRequestTokenFromTicket:(OAServiceTicket *)ticket data:(NSData *)data {
     if (!ticket.didSucceed || !data) return;
 	
@@ -107,7 +221,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 	if (!dataString) return;
 	
 	[engineOAuthRequestToken release];
-	engineOAuthRequestToken = [[OAToken alloc] initWithHTTPResponseBody:dataString];
+	engineOAuthRequestToken = [[DwollaToken alloc] initWithHTTPResponseBody:dataString];
     NSLog(@"  request token: %@", engineOAuthRequestToken.key);
 	
     //if( rdOAuthVerifier.length ) engineOAuthRequestToken.pin = rdOAuthVerifier;
@@ -117,19 +231,89 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
      userInfo:[NSDictionary dictionaryWithObject:engineOAuthRequestToken forKey:DwollaEngineTokenKey]];
 }
 
-- (void)oauthTicketFailed:(OAServiceTicket *)ticket data:(NSData *)data {
+- (void)setAccessTokenFromTicket:(OAServiceTicket *)ticket data:(NSData *)data {
+    //NSLog(@"got access token ticket response: %@ (%lu bytes)", ticket, (unsigned long)[data length]);
+	if (!ticket.didSucceed || !data) return;
+	
+	NSString *dataString = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
+	if (!dataString) return;
+    
+	if( engineOAuthVerifier.length && [dataString rangeOfString:@"oauth_verifier"].location == NSNotFound ) {
+        dataString = [dataString stringByAppendingFormat:@"&oauth_verifier=%@", engineOAuthVerifier];
+    }
+	
+    [engineOAuthAccessToken release];
+	engineOAuthAccessToken = [[DwollaToken alloc] initWithHTTPResponseBody:dataString];
+    //NSLog(@"  access token set %@", rdOAuthAccessToken.key);
+    
+	if( [engineDelegate respondsToSelector:@selector(dwollaEngineAccessToken:setAccessToken:)] ) {
+        [engineDelegate dwollaEngineAccessToken:self setAccessToken:engineOAuthAccessToken];
+    }
+    
+    // notification of access token
     [[NSNotificationCenter defaultCenter]
-     postNotificationName:DwollaEngineAuthFailureNotification object:self];
+     postNotificationName:DwollaEngineAccessTokenNotification object:self
+     userInfo:[NSDictionary dictionaryWithObject:engineOAuthAccessToken forKey:DwollaEngineTokenKey]];
 }
 
-//HELPERS
-- (BOOL)hasRequestToken {
-	return (engineOAuthRequestToken.key && engineOAuthRequestToken.secret);
+#pragma mark NSURLConnectionDelegate
+//- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
+//    //NSLog(@"received credential challenge!");
+//	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
+//}
+//
+
+- (void)connection:(DwollaHTTPURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // This method is called when the server has determined that it has enough information to create the NSURLResponse.
+    // it can be called multiple times, for example in the case of a redirect, so each time we reset the data.
+    [connection resetData];
+    
+    NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
+    int statusCode = [resp statusCode];
+    
+    if( statusCode >= 400 ) {
+        // error response; just abort now
+        NSError *error = [NSError errorWithDomain:@"HTTP" code:statusCode userInfo:nil];
+        if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestFailed:withError:)] ) {
+            [engineDelegate dwollaEngine:self requestFailed:connection.identifier withError:error];
+        }
+        [self closeConnection:connection];
+    }
+    else if( statusCode == 204 ) {
+        // no content; so skip the parsing, and declare success!
+        if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestSucceeded:withResults:)] ) {
+            [engineDelegate dwollaEngine:self requestSucceeded:connection.identifier withResults:nil];
+        }
+        [self closeConnection:connection];
+    }
 }
-- (NSURLRequest *)authorizationFormURLRequest {
-    NSString* testURL = [NSString stringWithFormat: @"%@?oauth_token=%@", dwollaOAuthAuthorizeURL, engineOAuthRequestToken.key];
-	OAMutableURLRequest *request = [[[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:testURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
-    return request;
+
+
+- (void)connection:(DwollaHTTPURLConnection *)connection didReceiveData:(NSData *)data {
+    [connection appendData:data];
 }
+
+
+- (void)connection:(DwollaHTTPURLConnection *)connection didFailWithError:(NSError *)error {
+	if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestFailed:withError:)] ) {
+		[engineDelegate dwollaEngine:self requestFailed:connection.identifier withError:error];
+    }
+    
+    [self closeConnection:connection];
+}
+
+
+- (void)connectionDidFinishLoading:(DwollaHTTPURLConnection *)connection {
+    NSData *receivedData = [connection data];
+    if( [receivedData length] ) {
+        [self parseConnectionResponse:connection];
+    }
+    
+    // Release the connection.
+    [engineConnections removeObjectForKey:[connection identifier]];
+}
+
+
+
 
 @end

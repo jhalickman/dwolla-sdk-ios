@@ -235,7 +235,7 @@
 	OACall *call = [[OACall alloc] initWithURL:[NSURL URLWithString:[oauthBase stringByAppendingString:@"request_token"]] method:@"POST"];
 	[call perform:consumer
 			token:initialToken
-			realm:realm 
+			realm:realm
 		 delegate:self
 		didFinish:@selector(requestTokenReceived:body:)];
 	
@@ -253,8 +253,7 @@
 		[reqToken storeInUserDefaultsWithServiceProviderName:oauthBase prefix:[@"request:" stringByAppendingString:realm]];
 		/* Save the token in case we exit and start again
 		 before the token is authorized (useful for iPhone) */
-		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@authorize?oauth_token=%@&oauth_callback=%@",
-										   oauthBase, token.key, callback]];
+		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@authorize?oauth_token=%@&oauth_callback=%@", oauthBase, token.key, callback]];
 		[[UIApplication sharedApplication] openURL:url];
 
 	}

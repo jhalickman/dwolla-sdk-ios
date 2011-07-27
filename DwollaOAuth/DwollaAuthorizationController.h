@@ -44,4 +44,8 @@
                  callback:(NSString *)callback 
                  delegate:(id<DwollaAuthorizationControllerDelegate>)delegate;
 
+-(IBAction)cancel:(id)sender;
+- (void) success;
+- (void) hideSplash;
+
 @end

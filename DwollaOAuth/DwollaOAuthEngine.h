@@ -13,6 +13,9 @@
 #import <Foundation/Foundation.h>
 #import "OAuthConsumer.h"
 #import "DwollaHTTPURLConnection.h"
+#import "DwollaToken.h"
+#import "DwollaMutableURLRequest.h"
+#import "DwollaConsumer.h"
 
 extern NSString *const DwollaEngineRequestTokenNotification;
 extern NSString *const DwollaEngineAccessTokenNotification;
@@ -23,24 +26,26 @@ extern NSString *const DwollaEngineTokenKey;
 
 @optional
 
-- (void)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine setAccessToken:(OAToken *)token;
-- (OAToken *)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine;
+- (void)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine setAccessToken:(DwollaToken *)token;
+- (DwollaToken *)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine;
 
-//- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestSucceeded:(RDLinkedInConnectionID *)identifier withResults:(id)results;
-//- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestFailed:(RDLinkedInConnectionID *)identifier withError:(NSError *)error;
+- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestSucceeded:(DwollaConnectionID *)identifier withResults:(id)results;
+- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestFailed:(DwollaConnectionID *)identifier withError:(NSError *)error;
 @end
 
 @interface DwollaOAuthEngine : NSObject {
     id<DwollaOAuthEngineDelegate> engineDelegate;
-    OAConsumer* engineOAuthConsumer;
-    OAToken*    engineOAuthRequestToken;
-    OAToken*    engineOAuthAccessToken;
+    DwollaConsumer* engineOAuthConsumer;
+    DwollaToken*    engineOAuthRequestToken;
+    DwollaToken*    engineOAuthAccessToken;
     NSString*   engineOAuthVerifier;
     NSMutableDictionary* engineConnections;
 }
 
+@property (nonatomic, readonly) DwollaConsumer *consumer;
 @property (nonatomic, readonly) BOOL isAuthorized;
 @property (nonatomic, readonly) BOOL hasRequestToken;
+@property (nonatomic, retain) NSString* verifier;
 
 + (id)engineWithConsumerKey:(NSString *)consumerKey 
              consumerSecret:(NSString *)consumerSecret 
@@ -55,12 +60,16 @@ extern NSString *const DwollaEngineTokenKey;
                  delegate:(id<DwollaOAuthEngineDelegate>)delegate ;
 
 - (void)requestRequestToken;
+- (void)requestAccessToken;
 
-- (void)sendTokenRequestWithURL:(NSURL *)url 
-                          token:(OAToken *)token
-                      onSuccess:(SEL)successSel 
-                         onFail:(SEL)failSel;
+- (NSUInteger)numberOfConnections;
+- (NSArray *)connectionIdentifiers;
+- (void)closeConnectionWithID:(DwollaConnectionID *)identifier;
+- (void)closeAllConnections;
+
 - (NSURLRequest *)authorizationFormURLRequest;
 
-//- (DwollaConnectionID *)profileForCurrentUser;
+- (void) setTheVerifier:(NSString *)newVerifier;
+- (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection;
+- (DwollaConnectionID *)accountInformationCurrentUser;
 @end

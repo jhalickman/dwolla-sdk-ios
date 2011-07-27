@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0A322713E0BADF00642970 /* DwollaConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A0A322513E0BADF00642970 /* DwollaConsumer.h */; };
+		1A0A322813E0BADF00642970 /* DwollaConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A322613E0BADF00642970 /* DwollaConsumer.m */; };
 		1A611BBC13BC03AA00CE40A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A611BBB13BC03AA00CE40A9 /* Foundation.framework */; };
 		1A611C1113BC057900CE40A9 /* DwollaOAuthEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */; };
 		1A611C1213BC057900CE40A9 /* DwollaOAuthEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */; };
@@ -55,9 +57,15 @@
 		1A6120AF13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6120AD13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m */; };
 		1A6120B213BC1FDE00CE40A9 /* NSString+UUID.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A6120B013BC1FDE00CE40A9 /* NSString+UUID.h */; };
 		1A6120B313BC1FDE00CE40A9 /* NSString+UUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */; };
+		1A70D52413E0B2D90051A88E /* DwollaMutableURLRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A70D52213E0B2D80051A88E /* DwollaMutableURLRequest.h */; };
+		1A70D52513E0B2D90051A88E /* DwollaMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70D52313E0B2D90051A88E /* DwollaMutableURLRequest.m */; };
+		1A70D52913E0B5CB0051A88E /* DwollaToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A70D52713E0B5CB0051A88E /* DwollaToken.h */; };
+		1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70D52813E0B5CB0051A88E /* DwollaToken.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A0A322513E0BADF00642970 /* DwollaConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaConsumer.h; sourceTree = "<group>"; };
+		1A0A322613E0BADF00642970 /* DwollaConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaConsumer.m; sourceTree = "<group>"; };
 		1A611BB813BC03AA00CE40A9 /* libDwollaOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDwollaOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A611BBB13BC03AA00CE40A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1A611BBF13BC03AA00CE40A9 /* DwollaOAuth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DwollaOAuth-Prefix.pch"; sourceTree = "<group>"; };
@@ -111,6 +119,10 @@
 		1A6120AD13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaHTTPURLConnection.m; sourceTree = "<group>"; };
 		1A6120B013BC1FDE00CE40A9 /* NSString+UUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UUID.h"; sourceTree = "<group>"; };
 		1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UUID.m"; sourceTree = "<group>"; };
+		1A70D52213E0B2D80051A88E /* DwollaMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaMutableURLRequest.h; sourceTree = "<group>"; };
+		1A70D52313E0B2D90051A88E /* DwollaMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaMutableURLRequest.m; sourceTree = "<group>"; };
+		1A70D52713E0B5CB0051A88E /* DwollaToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaToken.h; sourceTree = "<group>"; };
+		1A70D52813E0B5CB0051A88E /* DwollaToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaToken.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +175,12 @@
 				1A611D9313BC113A00CE40A9 /* DwollaAuthorizationController.m */,
 				1A6120AC13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h */,
 				1A6120AD13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m */,
+				1A70D52213E0B2D80051A88E /* DwollaMutableURLRequest.h */,
+				1A70D52313E0B2D90051A88E /* DwollaMutableURLRequest.m */,
+				1A70D52713E0B5CB0051A88E /* DwollaToken.h */,
+				1A70D52813E0B5CB0051A88E /* DwollaToken.m */,
+				1A0A322513E0BADF00642970 /* DwollaConsumer.h */,
+				1A0A322613E0BADF00642970 /* DwollaConsumer.m */,
 				1A611BBE13BC03AA00CE40A9 /* Supporting Files */,
 			);
 			path = DwollaOAuth;
@@ -272,6 +290,9 @@
 				1A611D9513BC113A00CE40A9 /* DwollaAuthorizationController.h in Headers */,
 				1A6120AE13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.h in Headers */,
 				1A6120B213BC1FDE00CE40A9 /* NSString+UUID.h in Headers */,
+				1A70D52413E0B2D90051A88E /* DwollaMutableURLRequest.h in Headers */,
+				1A70D52913E0B5CB0051A88E /* DwollaToken.h in Headers */,
+				1A0A322713E0BADF00642970 /* DwollaConsumer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +321,9 @@
 /* Begin PBXProject section */
 		1A611BAF13BC03AA00CE40A9 /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = 1A611BB213BC03AA00CE40A9 /* Build configuration list for PBXProject "DwollaOAuth" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -344,6 +368,9 @@
 				1A611D9613BC113A00CE40A9 /* DwollaAuthorizationController.m in Sources */,
 				1A6120AF13BC1EEC00CE40A9 /* DwollaHTTPURLConnection.m in Sources */,
 				1A6120B313BC1FDE00CE40A9 /* NSString+UUID.m in Sources */,
+				1A70D52513E0B2D90051A88E /* DwollaMutableURLRequest.m in Sources */,
+				1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */,
+				1A0A322813E0BADF00642970 /* DwollaConsumer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,12 +409,14 @@
 		1A611BC313BC03AA00CE40A9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"ADDITIONAL_SDKS[arch=*]" = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DSTROOT = /tmp/DwollaOAuth.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "DwollaOAuth/DwollaOAuth-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -400,6 +429,7 @@
 				GCC_PREFIX_HEADER = "DwollaOAuth/DwollaOAuth-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 			};
 			name = Release;
 		};
