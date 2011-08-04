@@ -79,7 +79,7 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 
 - (void)prepare {
     // sign
-	//NSLog(@"Base string is: %@", [self _signatureBaseString]);
+	NSLog(@"Base string is: %@", [self _signatureBaseString]);
     
     DwollaConsumer* dwollaConsumer = (DwollaConsumer *) consumer;
     
@@ -95,8 +95,8 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	NSMutableArray *chunks = [[NSMutableArray alloc] init];
     
     
-    //if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
-    if([[token key] length] == 0) {
+    if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
+        //if([[token key] length] == 0) {
         [chunks addObject:[NSString stringWithFormat:@"oauth_callback=\"%@\"", [dwollaConsumer.callback encodedURLParameterString]]]; 
     }
     
@@ -111,12 +111,6 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	[chunks addObject:[NSString stringWithFormat:@"oauth_signature=\"%@\"", [signature encodedURLParameterString]]];
     [chunks	addObject:@"oauth_version=\"1.0\""];
 	[chunks addObject:[NSString stringWithFormat:@"oauth_timestamp=\"%@\"", timestamp]];
-    
-//    NSLog([NSString stringWithFormat:@"Token secret: %@", tokenSecret]);
-//    NSLog([NSString stringWithFormat:@"Token key: %@", [token.key  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
-//    NSLog([NSString stringWithFormat:@"Timestamp: %@", [timestamp  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
-//    NSLog([NSString stringWithFormat:@"Nonce: %@", [nonce  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
-//    NSLog([NSString stringWithFormat:@"Signature: %@", [signature  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]);
     
 	NSString *oauthHeader = [NSString stringWithFormat:@"OAuth %@", [chunks componentsJoinedByString:@","]];
 	[chunks release];
@@ -158,10 +152,6 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	NSMutableArray *parameterPairs = [[NSMutableArray alloc] initWithCapacity:(5 + [parameters count] + [tokenParameters count])];
     
 	OARequestParameter *parameter;
-    
-    if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
-        
-    }
     
     if([[token key] length] == 0) {
         parameter = [[OARequestParameter alloc] initWithName:@"oauth_callback" value:dwollaConsumer.callback];

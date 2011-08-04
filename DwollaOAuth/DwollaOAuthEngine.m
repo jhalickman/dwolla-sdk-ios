@@ -9,11 +9,10 @@
 //
 
 #import "DwollaOAuthEngine.h"
-                                                     
-static NSString *const dwollaAPIBaseURL           = @"https://www.dwolla.com/oauth/rest/";
-static NSString *const dwollaOAuthRequestTokenURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
-static NSString *const dwollaOAuthAccessTokenURL  = @"https://www.dwolla.com/oauth/OAuth.ashx";
-static NSString *const dwollaOAuthAuthorizeURL    = @"https://www.dwolla.com/oauth/OAuth.ashx";
+
+static NSString *const dwollaAPIBaseURL = @"https://www.dwolla.com/oauth/rest/";
+static NSString *const dwollaOAuthURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
+
 
 NSString *const DwollaEngineRequestTokenNotification = @"DwollaEngineRequestTokenNotification";
 NSString *const DwollaEngineAccessTokenNotification  = @"DwollaEngineAccessTokenNotification";
@@ -42,36 +41,37 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
 @synthesize verifier = engineOAuthVerifier, consumer = engineOAuthConsumer;
 
-    + (id)engineWithConsumerKey:(NSString *)consumerKey 
-                 consumerSecret:(NSString *)consumerSecret 
-                           scope:(NSString *)scope 
-                       callback:(NSString *)callback 
-                       delegate:(id<DwollaOAuthEngineDelegate>)delegate {
-        
-        return [[[self alloc] initWithConsumerKey:consumerKey 
-                                   consumerSecret:consumerSecret 
-                                             scope:scope 
-                                         callback:callback 
-                                         delegate:delegate] autorelease];
-        
-    }
++ (id)engineWithConsumerKey:(NSString *)consumerKey 
+             consumerSecret:(NSString *)consumerSecret 
+                      scope:(NSString *)scope 
+                   callback:(NSString *)callback 
+                   delegate:(id<DwollaOAuthEngineDelegate>)delegate {
+    
+    return [[[self alloc] initWithConsumerKey:consumerKey 
+                               consumerSecret:consumerSecret 
+                                        scope:scope 
+                                     callback:callback 
+                                     delegate:delegate] autorelease];
+    
+}
 
-    - (id)initWithConsumerKey:(NSString *)consumerKey 
-               consumerSecret:(NSString *)consumerSecret 
-                         scope:(NSString *)scope 
-                     callback:(NSString *)callback 
-                     delegate:(id<DwollaOAuthEngineDelegate>)delegate {
-        if( self == [super init] ) {
-            engineDelegate = delegate;
-            engineOAuthConsumer = [[DwollaConsumer alloc] 
-                                   initWithKey:consumerKey 
-                                   secret:consumerSecret 
-                                   scope:scope 
-                                   callback:callback];
-            engineConnections = [[NSMutableDictionary alloc] init];
-        }
-        return self;
+- (id)initWithConsumerKey:(NSString *)consumerKey 
+           consumerSecret:(NSString *)consumerSecret 
+                    scope:(NSString *)scope 
+                 callback:(NSString *)callback 
+                 delegate:(id<DwollaOAuthEngineDelegate>)delegate {
+    if( self == [super init] ) {
+        engineDelegate = delegate;
+        engineOAuthConsumer = [[DwollaConsumer alloc] 
+                               initWithKey:consumerKey 
+                               secret:consumerSecret 
+                               scope:scope 
+                               callback:callback];
+        engineConnections = [[NSMutableDictionary alloc] init];
+        engineOAuthAccessToken = [[[DwollaToken alloc] initWithUserDefaultsUsingServiceProviderName:@"Dwolla" prefix:@"Demo"] autorelease];
     }
+    return self;
+}
 
 
 - (void) setTheVerifier:(NSString *)newVerifier
@@ -128,31 +128,46 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 }
 
 - (void)requestRequestToken {
-	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthRequestTokenURL]
+	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthURL]
                             token:nil 
                         onSuccess:@selector(setRequestTokenFromTicket:data:)
                            onFail:@selector(oauthTicketFailed:data:)];
 }
 
 - (void)requestAccessToken {
-	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthAccessTokenURL]
+	[self sendTokenRequestWithURL:[NSURL URLWithString:dwollaOAuthURL]
                             token:engineOAuthRequestToken
                         onSuccess:@selector(setAccessTokenFromTicket:data:)
                            onFail:@selector(oauthTicketFailed:data:)];
 }
+
 - (NSURLRequest *)authorizationFormURLRequest {
-    NSString* testURL = [NSString stringWithFormat: @"%@?oauth_token=%@", dwollaOAuthAuthorizeURL, engineOAuthRequestToken.key];
+    NSString* testURL = [NSString stringWithFormat: @"%@?oauth_token=%@", dwollaOAuthURL, engineOAuthRequestToken.key];
 	DwollaMutableURLRequest *request = [[[DwollaMutableURLRequest alloc] initWithURL:[NSURL URLWithString:testURL] consumer:nil token:engineOAuthRequestToken realm:nil signatureProvider:nil] autorelease];
     return request;
 }
 
 #pragma mark account methods
 - (DwollaConnectionID *)accountInformationCurrentUser {
-    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/balance"]];
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/accountinformation"]];
     
-    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+    [self sendRequestWithURL:url
+                       token:engineOAuthAccessToken 
+                      method:@"GET"
+                   onSuccess:@selector(getResponse:data:)
+                      onFail:@selector(oauthTicketFailed:data:)];
+    
+    // return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+    return nil;
 }
-
+- (void)getResponse:(OAServiceTicket *)ticket data:(NSData *)data 
+{
+    if (!data) return;
+    NSString *dataString = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
+	
+    NSString *test = @"";
+    if (!dataString) return;
+}
 
 #pragma mark private
 
@@ -162,16 +177,16 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     
 	// create and configure the URL request
     DwollaMutableURLRequest* request = [[[DwollaMutableURLRequest alloc] initWithURL:url
-                                                                    consumer:engineOAuthConsumer 
-                                                                       token:engineOAuthAccessToken 
-                                                                       realm:nil
-                                                           signatureProvider:nil] autorelease];
+                                                                            consumer:engineOAuthConsumer 
+                                                                               token:engineOAuthAccessToken 
+                                                                               realm:nil
+                                                                   signatureProvider:nil] autorelease];
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     if( method ) {
         [request setHTTPMethod:method];
     }
-
+    
     [request prepare];
     if( [body length] ) { 
         [request setHTTPBody:body];
@@ -179,6 +194,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     
     // initiate a URL connection with this request
     DwollaHTTPURLConnection* connection = [[[DwollaHTTPURLConnection alloc] initWithRequest:request delegate:self] autorelease];
+    
     if( connection ) {
         [engineConnections setObject:connection forKey:connection.identifier];
     }
@@ -190,16 +206,38 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     //NSLog([NSString stringWithFormat:@"%@",[connection data]]);
 }
 
+- (void)sendRequestWithURL:(NSURL *)url 
+                     token:(DwollaToken *)token
+                    method:(NSString *)method
+                 onSuccess:(SEL)successSel 
+                    onFail:(SEL)failSel {
+    DwollaMutableURLRequest* request = [[[DwollaMutableURLRequest alloc] 
+                                         initWithURL:url 
+                                         consumer:engineOAuthConsumer 
+                                         token:token 
+                                         realm:nil 
+                                         signatureProvider:nil] autorelease];
+	if( !request ) return;
+	
+    //[request setHTTPMethod:method];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    OADataFetcher* fetcher = [[[OADataFetcher alloc] init] autorelease];	
+    [fetcher fetchDataWithRequest:request delegate:self didFinishSelector:successSel didFailSelector:failSel];
+}
+
+
+
 - (void)sendTokenRequestWithURL:(NSURL *)url 
                           token:(DwollaToken *)token 
                       onSuccess:(SEL)successSel 
                          onFail:(SEL)failSel {
     DwollaMutableURLRequest* request = [[[DwollaMutableURLRequest alloc] 
-                                     initWithURL:url 
-                                     consumer:engineOAuthConsumer 
-                                     token:token 
-                                     realm:nil 
-                                     signatureProvider:nil] autorelease];
+                                         initWithURL:url 
+                                         consumer:engineOAuthConsumer 
+                                         token:token 
+                                         realm:nil 
+                                         signatureProvider:nil] autorelease];
 	if( !request ) return;
 	
     [request setHTTPMethod:@"POST"];
@@ -230,6 +268,8 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
      postNotificationName:DwollaEngineRequestTokenNotification object:self
      userInfo:[NSDictionary dictionaryWithObject:engineOAuthRequestToken forKey:DwollaEngineTokenKey]];
 }
+
+
 
 - (void)setAccessTokenFromTicket:(OAServiceTicket *)ticket data:(NSData *)data {
     //NSLog(@"got access token ticket response: %@ (%lu bytes)", ticket, (unsigned long)[data length]);

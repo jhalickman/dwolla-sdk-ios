@@ -49,15 +49,21 @@ extern NSString *const DwollaEngineTokenKey;
 
 + (id)engineWithConsumerKey:(NSString *)consumerKey 
              consumerSecret:(NSString *)consumerSecret 
-                       scope:(NSString *) scope 
+                      scope:(NSString *) scope 
                    callback:(NSString *) callback
                    delegate:(id<DwollaOAuthEngineDelegate>)delegate;
 
 - (id)initWithConsumerKey:(NSString *)consumerKey 
            consumerSecret:(NSString *)consumerSecret 
-                     scope:(NSString *) scope 
+                    scope:(NSString *) scope 
                  callback:(NSString *) callback
                  delegate:(id<DwollaOAuthEngineDelegate>)delegate ;
+
+- (void)sendRequestWithURL:(NSURL *)url 
+                     token:(DwollaToken *)token
+                    method:(NSString *)method
+                 onSuccess:(SEL)successSel 
+                    onFail:(SEL)failSel;
 
 - (void)requestRequestToken;
 - (void)requestAccessToken;
