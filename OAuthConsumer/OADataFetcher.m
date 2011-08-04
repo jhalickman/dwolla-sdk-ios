@@ -26,7 +26,6 @@
 
 #import "OADataFetcher.h"
 
-
 @implementation OADataFetcher
 
 - (id)init {

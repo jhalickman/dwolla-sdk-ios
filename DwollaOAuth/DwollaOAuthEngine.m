@@ -9,6 +9,7 @@
 //
 
 #import "DwollaOAuthEngine.h"
+#import "DwollaDataFetcher.h"
 
 static NSString *const dwollaAPIBaseURL = @"https://www.dwolla.com/oauth/rest/";
 static NSString *const dwollaOAuthURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
@@ -151,7 +152,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 - (DwollaConnectionID *)accountInformationCurrentUser {
     NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/accountinformation"]];
     
-    [self sendRequestWithURL:url
+    [self sendRequestWithURL: url
                        token:engineOAuthAccessToken 
                       method:@"GET"
                    onSuccess:@selector(getResponse:data:)
@@ -164,8 +165,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 {
     if (!data) return;
     NSString *dataString = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
-	
-    NSString *test = @"";
     if (!dataString) return;
 }
 
@@ -220,13 +219,12 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 	if( !request ) return;
 	
     //[request setHTTPMethod:method];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
-    OADataFetcher* fetcher = [[[OADataFetcher alloc] init] autorelease];	
+    DwollaDataFetcher* fetcher = [[[DwollaDataFetcher alloc] init] autorelease];	
     [fetcher fetchDataWithRequest:request delegate:self didFinishSelector:successSel didFailSelector:failSel];
 }
-
-
 
 - (void)sendTokenRequestWithURL:(NSURL *)url 
                           token:(DwollaToken *)token 
@@ -269,8 +267,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
      userInfo:[NSDictionary dictionaryWithObject:engineOAuthRequestToken forKey:DwollaEngineTokenKey]];
 }
 
-
-
 - (void)setAccessTokenFromTicket:(OAServiceTicket *)ticket data:(NSData *)data {
     //NSLog(@"got access token ticket response: %@ (%lu bytes)", ticket, (unsigned long)[data length]);
 	if (!ticket.didSucceed || !data) return;
@@ -297,11 +293,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 }
 
 #pragma mark NSURLConnectionDelegate
-//- (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge {
-//    //NSLog(@"received credential challenge!");
-//	[[challenge sender] continueWithoutCredentialForAuthenticationChallenge:challenge];
-//}
-//
 
 - (void)connection:(DwollaHTTPURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
     // This method is called when the server has determined that it has enough information to create the NSURLResponse.

@@ -61,6 +61,8 @@
 		1A70D52513E0B2D90051A88E /* DwollaMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70D52313E0B2D90051A88E /* DwollaMutableURLRequest.m */; };
 		1A70D52913E0B5CB0051A88E /* DwollaToken.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A70D52713E0B5CB0051A88E /* DwollaToken.h */; };
 		1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70D52813E0B5CB0051A88E /* DwollaToken.m */; };
+		1AFE7AE913EA4C7800E0DF68 /* DwollaDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7AE713EA4C7800E0DF68 /* DwollaDataFetcher.h */; };
+		1AFE7AEA13EA4C7800E0DF68 /* DwollaDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7AE813EA4C7800E0DF68 /* DwollaDataFetcher.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +125,8 @@
 		1A70D52313E0B2D90051A88E /* DwollaMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaMutableURLRequest.m; sourceTree = "<group>"; };
 		1A70D52713E0B5CB0051A88E /* DwollaToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaToken.h; sourceTree = "<group>"; };
 		1A70D52813E0B5CB0051A88E /* DwollaToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaToken.m; sourceTree = "<group>"; };
+		1AFE7AE713EA4C7800E0DF68 /* DwollaDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaDataFetcher.h; sourceTree = "<group>"; };
+		1AFE7AE813EA4C7800E0DF68 /* DwollaDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaDataFetcher.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 				1A70D52813E0B5CB0051A88E /* DwollaToken.m */,
 				1A0A322513E0BADF00642970 /* DwollaConsumer.h */,
 				1A0A322613E0BADF00642970 /* DwollaConsumer.m */,
+				1AFE7AE713EA4C7800E0DF68 /* DwollaDataFetcher.h */,
+				1AFE7AE813EA4C7800E0DF68 /* DwollaDataFetcher.m */,
 				1A611BBE13BC03AA00CE40A9 /* Supporting Files */,
 			);
 			path = DwollaOAuth;
@@ -293,6 +299,7 @@
 				1A70D52413E0B2D90051A88E /* DwollaMutableURLRequest.h in Headers */,
 				1A70D52913E0B5CB0051A88E /* DwollaToken.h in Headers */,
 				1A0A322713E0BADF00642970 /* DwollaConsumer.h in Headers */,
+				1AFE7AE913EA4C7800E0DF68 /* DwollaDataFetcher.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +378,7 @@
 				1A70D52513E0B2D90051A88E /* DwollaMutableURLRequest.m in Sources */,
 				1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */,
 				1A0A322813E0BADF00642970 /* DwollaConsumer.m in Sources */,
+				1AFE7AEA13EA4C7800E0DF68 /* DwollaDataFetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 
 
 @interface OADataFetcher : NSObject {
-@private
+@protected
     OAMutableURLRequest *request;
     NSURLResponse *response;
     NSURLConnection *connection;

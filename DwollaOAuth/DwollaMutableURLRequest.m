@@ -95,9 +95,9 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	NSMutableArray *chunks = [[NSMutableArray alloc] init];
     
     
-    if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
-        //if([[token key] length] == 0) {
-        [chunks addObject:[NSString stringWithFormat:@"oauth_callback=\"%@\"", [dwollaConsumer.callback encodedURLParameterString]]]; 
+    //if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
+    if([[token key] length] == 0) {
+        [chunks addObject:[NSString stringWithFormat:@"oauasdfth_callback=\"%@\"", [dwollaConsumer.callback encodedURLParameterString]]]; 
     }
     
 	[chunks addObject:[NSString stringWithFormat:@"oauth_consumer_key=\"%@\"", [dwollaConsumer.key encodedURLParameterString]]];
@@ -115,10 +115,10 @@ signatureProvider:(id<OASignatureProviding>)aProvider
 	NSString *oauthHeader = [NSString stringWithFormat:@"OAuth %@", [chunks componentsJoinedByString:@","]];
 	[chunks release];
     
-    [self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    //[self setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     [self setValue:oauthHeader forHTTPHeaderField:@"Authorization"];
     
-    if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
+    if([[token key] length] == 0) {
         NSString *scope = [NSString stringWithFormat:@"scope=%@", [dwollaConsumer.scope encodedURLParameterString]];
         
         [self setHTTPBody:[[[NSString alloc] initWithString: scope] 
