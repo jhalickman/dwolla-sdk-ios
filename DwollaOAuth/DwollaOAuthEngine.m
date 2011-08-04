@@ -10,6 +10,7 @@
 
 #import "DwollaOAuthEngine.h"
 #import "DwollaDataFetcher.h"
+#import "SBJson.h"
 
 static NSString *const dwollaAPIBaseURL = @"https://www.dwolla.com/oauth/rest/";
 static NSString *const dwollaOAuthURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
@@ -152,14 +153,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 - (DwollaConnectionID *)accountInformationCurrentUser {
     NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/accountinformation"]];
     
-    [self sendRequestWithURL: url
-                       token:engineOAuthAccessToken 
-                      method:@"GET"
-                   onSuccess:@selector(getResponse:data:)
-                      onFail:@selector(oauthTicketFailed:data:)];
-    
-    // return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
-    return nil;
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
 }
 - (void)getResponse:(OAServiceTicket *)ticket data:(NSData *)data 
 {
@@ -202,7 +196,10 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 }
 
 - (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection {
-    //NSLog([NSString stringWithFormat:@"%@",[connection data]]);
+    NSString *dataString = [[[NSString alloc] initWithData: [connection data] encoding: NSUTF8StringEncoding] autorelease];
+    NSDictionary *result = (NSDictionary *) [[SBJsonParser new] objectWithString:dataString error:NULL];
+    
+    [engineDelegate dwollaEngine:self requestSucceeded:connection.identifier withResults:result];
 }
 
 - (void)sendRequestWithURL:(NSURL *)url 
