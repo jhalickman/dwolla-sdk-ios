@@ -97,7 +97,7 @@ signatureProvider:(id<OASignatureProviding>)aProvider
     
     //if([[[token parameters] objectForKey:@"oauth_verifier"] length] == 0) {
     if([[token key] length] == 0) {
-        [chunks addObject:[NSString stringWithFormat:@"oauasdfth_callback=\"%@\"", [dwollaConsumer.callback encodedURLParameterString]]]; 
+        [chunks addObject:[NSString stringWithFormat:@"oauth_callback=\"%@\"", [dwollaConsumer.callback encodedURLParameterString]]]; 
     }
     
 	[chunks addObject:[NSString stringWithFormat:@"oauth_consumer_key=\"%@\"", [dwollaConsumer.key encodedURLParameterString]]];

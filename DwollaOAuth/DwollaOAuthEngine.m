@@ -155,12 +155,74 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     
     return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
 }
-- (void)getResponse:(OAServiceTicket *)ticket data:(NSData *)data 
-{
-    if (!data) return;
-    NSString *dataString = [[[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding] autorelease];
-    if (!dataString) return;
+
+- (DwollaConnectionID *)balanceCurrentUser {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/balance"]];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
 }
+
+- (DwollaConnectionID *)accountInformationForUser:(NSString *) userIdentifier {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/accountinformation/%@", userIdentifier]]];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+- (DwollaConnectionID *)contactSearch:(NSString *) searchString withLimit:(NSInteger) limit withTypes:(NSString *) types {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/contacts?search=%@&limit=%@&types=%@", searchString, [NSString stringWithFormat:@"%d", limit], types]]];
+        
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+- (DwollaConnectionID *)nearbySearchWithLongitude:(NSString *) longitude 
+                                     withLatitude:(NSString *) latitude 
+                                        withLimit:(NSInteger) limit
+                                        withRange:(NSInteger) range {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/nearby?latitude=%@&longitude=%@&range=%@&limit=%@", latitude, longitude, [NSString stringWithFormat:@"%d", range], [NSString stringWithFormat:@"%d", limit]]]];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+- (DwollaConnectionID *)transactionsSince:(NSString *) sinceDate withLimit:(NSInteger) limit withTypes:(NSString *) types {
+    NSMutableArray* parameters = [[NSMutableArray alloc] init];
+    
+    if (sinceDate != nil) {
+        [parameters addObject:[NSString stringWithFormat:@"sincedate=%@",sinceDate]];
+    }
+    if (limit > 0) {
+        [parameters addObject:[NSString stringWithFormat:@"limit=%@", [NSString stringWithFormat:@"%d", limit]]];
+    }
+    if (types != nil) {
+        [parameters addObject:[NSString stringWithFormat:@"types=%@",types]];
+    }
+    
+    NSString* parameterString = @"";
+    
+    if ([parameters count] > 0) {
+        parameterString = [NSString stringWithFormat:@"?%@", [parameters componentsJoinedByString:@"&"]];
+    }
+    
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/transactions%@", parameterString]]];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+- (DwollaConnectionID *)sendMoney:(NSString *) pin 
+                withDestinationId:(NSString *) destinationId 
+                       withAmount:(NSDecimalNumber *) amount 
+                        withNotes:(NSString *) note 
+              withDestinationType:(NSString *) type 
+                   withAssumeCost:(BOOL) assumeCost 
+                  withFundsSource:(NSString *) fundSource
+{
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/send"]];
+    
+    NSString* json = [NSString stringWithFormat:@"{\"pin\":\"%@\", \"destinationId\":\"%@\", \"amount\":%@, \"notes\":\"%@\", \"destinationType\":\"%@\", \"assumeCosts\":\"%@\", \"fundsSource\":\"%@\"}", pin, destinationId, amount, note, type, (assumeCost ? @"true" : @"false"), fundSource];
+    NSData* body = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"POST" body:body];
+}
+
 
 #pragma mark private
 

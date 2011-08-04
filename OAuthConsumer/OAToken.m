@@ -118,6 +118,7 @@
 
 - (id)initWithUserDefaultsUsingServiceProviderName:(const NSString *)provider prefix:(const NSString *)prefix {
 	[super init];
+
 	self.key = [OAToken loadSetting:@"key" provider:provider prefix:prefix];
 	self.secret = [OAToken loadSetting:@"secret" provider:provider prefix:prefix];
 	self.session = [OAToken loadSetting:@"session" provider:provider prefix:prefix];
@@ -149,7 +150,7 @@
 #pragma mark settings
 
 - (BOOL)isValid {
-	return (key != nil && ![key isEqualToString:@""] && secret != nil && ![secret isEqualToString:@""]);
+    return (key != nil && ![key isEqualToString:@""] && secret != nil && ![secret isEqualToString:@""]);
 }
 
 - (int)storeInUserDefaultsWithServiceProviderName:(const NSString *)provider prefix:(const NSString *)prefix {

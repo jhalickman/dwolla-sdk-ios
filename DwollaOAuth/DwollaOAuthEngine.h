@@ -78,4 +78,26 @@ extern NSString *const DwollaEngineTokenKey;
 - (void) setTheVerifier:(NSString *)newVerifier;
 - (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection;
 - (DwollaConnectionID *)accountInformationCurrentUser;
+- (DwollaConnectionID *)balanceCurrentUser;
+- (DwollaConnectionID *)accountInformationForUser:(NSString *) userIdentifier;
+- (DwollaConnectionID *)contactSearch:(NSString *) searchString 
+                            withLimit:(NSInteger) limit 
+                            withTypes:(NSString *) types;
+
+- (DwollaConnectionID *)transactionsSince:(NSString *) sinceDate 
+                                withLimit:(NSInteger) limit 
+                                withTypes:(NSString *) types;
+
+- (DwollaConnectionID *)sendMoney:(NSString *) pin 
+                withDestinationId:(NSString *) destinationId 
+                       withAmount:(NSDecimalNumber *) amount 
+                        withNotes:(NSString *) note 
+              withDestinationType:(NSString *) type 
+                   withAssumeCost:(BOOL) assumeCost 
+                  withFundsSource:(NSString *) fundSource;
+
+- (DwollaConnectionID *)nearbySearchWithLongitude:(NSString *) longitude 
+                                     withLatitude:(NSString *) latitude 
+                                        withLimit:(NSInteger) limit
+                                        withRange:(NSInteger) range;
 @end
