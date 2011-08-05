@@ -31,7 +31,7 @@ Installation (XCode 4)
 Usage
 ===========
 
-1.The view controller you wish to communicate with the Dwolla SDK will need to implement 2 interfaces:
+1. The view controller you wish to communicate with the Dwolla SDK will need to implement 2 interfaces:
 
 		"DwollaOAuthEngineDelegate" and "DwollaAuthorizationControllerDelegate"
 
@@ -56,13 +56,13 @@ Usage
 	DwollaAuthorizationControllerDelegate
 
 		#Is called if the user is successfully Authorized.
-		- (void)dwollaAuthorizationControllerSucceeded:(DwollaAuthorizationController *)controller {
+		- (void)dwollaAuthorizationControllerSucceeded:(DwollaAuthorizationController *)controller 
 		
 		#Is called if the user's authroization Fails.
-		- (void)dwollaAuthorizationControllerFailed:(DwollaAuthorizationController *)controller {
+		- (void)dwollaAuthorizationControllerFailed:(DwollaAuthorizationController *)controller 
 		
 		#Is called if the user cancels the Authorization.
-		- (void)dwollaAuthorizationControllerCanceled:(DwollaAuthorizationController *)controller {
+		- (void)dwollaAuthorizationControllerCanceled:(DwollaAuthorizationController *)controller 
 
 1. Next, you need to create your DwollaEngine with your Consumer Key,Secret, Scope, and Callback.
    NOTE: The callback in this isn't really used, we scrap the URL for the needed results. 
