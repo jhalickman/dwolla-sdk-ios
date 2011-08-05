@@ -88,7 +88,7 @@ extern NSString *const DwollaEngineTokenKey;
                                 withLimit:(NSInteger) limit 
                                 withTypes:(NSString *) types;
 
-- (DwollaConnectionID *)sendMoney:(NSString *) pin 
+- (DwollaConnectionID *)sendMoneyWithPin:(NSString *) pin 
                 withDestinationId:(NSString *) destinationId 
                        withAmount:(NSDecimalNumber *) amount 
                         withNotes:(NSString *) note 

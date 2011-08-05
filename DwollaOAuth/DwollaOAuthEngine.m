@@ -258,7 +258,7 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
 }
 
-- (DwollaConnectionID *)sendMoney:(NSString *) pin 
+- (DwollaConnectionID *)sendMoneyWithPin:(NSString *) pin 
                 withDestinationId:(NSString *) destinationId 
                        withAmount:(NSDecimalNumber *) amount 
                         withNotes:(NSString *) note 
