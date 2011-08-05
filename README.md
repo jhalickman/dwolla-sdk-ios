@@ -35,7 +35,7 @@ Usage
 
 		"DwollaOAuthEngineDelegate" and "DwollaAuthorizationControllerDelegate"
 
-	Next you will need to define 2 variables. A "DwollaOAuthEngine" and a "UIViewController". The Engine will hold the Class which holds a majority of the logic for passing data to and from the Dwolla OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the verification and token processing for the OAuth workflow.
+1. Next you will need to define 2 variables. A "DwollaOAuthEngine" and a "UIViewController". The Engine will hold the Class which holds a majority of the logic for passing data to and from the Dwolla OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the verification and token processing for the OAuth workflow.
 
 1. Next, you need to implement the functions for both Delegates:
 
