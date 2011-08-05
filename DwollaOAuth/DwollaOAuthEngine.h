@@ -100,4 +100,25 @@ extern NSString *const DwollaEngineTokenKey;
                                      withLatitude:(NSString *) latitude 
                                         withLimit:(NSInteger) limit
                                         withRange:(NSInteger) range;
+
+//- (DwollaConnectionID *)statsForCurrentUserWithTypes:(NSString *) types 
+//                                       withStartDate:(NSString *) startDate 
+//                                         withEndDate:(NSString *) endDate;
+
+- (DwollaConnectionID *) registerWithEmail:(NSString *) email 
+                              withPassword:(NSString *) password
+                             withFirstName:(NSString *) firstName 
+                              withLastName:(NSString *) lastName 
+                                  withType:(NSString *) accountType 
+                          withOrganization:(NSString *) organization 
+                                   withEIN:(NSString *) ein 
+                               withAddress:(NSString *) address 
+                            withAddressTwo:(NSString *) address2 
+                                  withCity:(NSString *) city 
+                                 withState:(NSString *) state 
+                                   withZip:(NSString *) zip 
+                                 withPhone:(NSString *) phone 
+                              withPhoneTwo:(NSString *) phone2
+                                   withPIN:(NSString *) pin 
+                                   withDOB:(NSString *) dob;
 @end

@@ -70,7 +70,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
                                scope:scope 
                                callback:callback];
         engineConnections = [[NSMutableDictionary alloc] init];
-        engineOAuthAccessToken = [[[DwollaToken alloc] initWithUserDefaultsUsingServiceProviderName:@"Dwolla" prefix:@"Demo"] autorelease];
     }
     return self;
 }
@@ -110,10 +109,10 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
 #pragma mark authorization methods
 - (BOOL)isAuthorized {
-	if( engineOAuthAccessToken.key && engineOAuthAccessToken.secret ) return YES;
+	if( [engineOAuthAccessToken isValid] ) return YES;
 	
 	// check for cached creds
-    if( [engineDelegate respondsToSelector:@selector(linkedInEngineAccessToken:)] ) {
+    if( [engineDelegate respondsToSelector:@selector(dwollaEngineAccessToken:)] ) {
         [engineOAuthAccessToken release];
         engineOAuthAccessToken = [[engineDelegate dwollaEngineAccessToken:self] retain];
         if( engineOAuthAccessToken.key && engineOAuthAccessToken.secret ) return YES;
@@ -181,6 +180,39 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/nearby?latitude=%@&longitude=%@&range=%@&limit=%@", latitude, longitude, [NSString stringWithFormat:@"%d", range], [NSString stringWithFormat:@"%d", limit]]]];
     
     return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+}
+
+//- (DwollaConnectionID *)statsForCurrentUserWithTypes:(NSString *) types 
+//                                       withStartDate:(NSString *) startDate 
+//                                         withEndDate:(NSString *) endDate {
+//    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/stats?types=%@&startDate=%@&endDate=%@", types, startDate, endDate]]];
+//    
+//    return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
+//}
+
+- (DwollaConnectionID *) registerWithEmail:(NSString *) email 
+                              withPassword:(NSString *) password
+                             withFirstName:(NSString *) firstName 
+                              withLastName:(NSString *) lastName 
+                                  withType:(NSString *) accountType 
+                          withOrganization:(NSString *) organization 
+                                   withEIN:(NSString *) ein 
+                               withAddress:(NSString *) address 
+                            withAddressTwo:(NSString *) address2 
+                                  withCity:(NSString *) city 
+                                 withState:(NSString *) state 
+                                   withZip:(NSString *) zip 
+                                 withPhone:(NSString *) phone 
+                              withPhoneTwo:(NSString *) phone2
+                                   withPIN:(NSString *) pin 
+                                   withDOB:(NSString *) dob {
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/register"]];
+    
+    NSString* json = [NSString stringWithFormat:@"{\"Email\":\"%@\", \"{Password\":\"%@\", \"FirstName\":%@, \"LastName\":\"%@\", \"AccountType\":\"%@\", \"Organization\":\"%@\", \"EIN\":\"%@\", \"Address\":\"%@\", \"Address2\":\"%@\", \"City\":\"%@\", \"State\":\"%@\", \"Phone\":\"%@\", \"Phone2\":\"%@\", \"PIN\":\"%@\", \"DOB\":\"%@\"}", email, password, firstName, lastName, accountType, organization, ein, address, address2, city, state, zip, phone, phone2, pin, dob];
+    
+    NSData* body = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"POST" body:body];
 }
 
 - (DwollaConnectionID *)transactionsSince:(NSString *) sinceDate withLimit:(NSInteger) limit withTypes:(NSString *) types {

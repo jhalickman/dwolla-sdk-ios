@@ -71,6 +71,14 @@
 	return (key != nil && ![key isEqualToString:@""] && secret != nil && ![secret isEqualToString:@""]);
 }
 
++ (void)removeFromUserDefaultsWithServiceProviderName:(NSString *)provider prefix:(NSString *)prefix {
+	NSArray *keys = [NSArray arrayWithObjects:@"key", @"secret", @"created", @"duration", @"session", @"attributes", @"renewable", nil];
+	for(NSString *name in keys) {
+        [DwollaToken saveSetting:name object:@"" provider:provider prefix:prefix];
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:[DwollaToken settingsKey:name provider:provider prefix:prefix]];
+	}
+}
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
 	[aCoder encodeObject:[self key] forKey:@"key"];
 	[aCoder encodeObject:[self secret] forKey:@"secret"];

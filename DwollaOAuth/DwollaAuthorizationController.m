@@ -59,7 +59,9 @@
     
     authorizationNavBar = [[UINavigationBar alloc] initWithFrame:CGRectZero];
     [authorizationNavBar setItems:[NSArray arrayWithObject:[[[UINavigationItem alloc] initWithTitle:@"Dwolla Grid"] autorelease]]];
-    authorizationNavBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
+    authorizationNavBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel:)] autorelease];
+    
+    
     [authorizationNavBar sizeToFit];
     authorizationNavBar.frame = CGRectMake(0, 0, self.view.bounds.size.width, authorizationNavBar.frame.size.height);
     authorizationNavBar.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleWidth;
@@ -78,17 +80,18 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     authorizationDelegate = nil;
+    [authorizationNavBar release];
+    [authorizationWebView release];
     [dwollaEngine release];
     [super dealloc];
 }
 
 -(void) cancel:(id) sender 
 {
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage *cookieJar = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    for (cookie in [cookieJar cookies]) {
-        NSLog(@"%@", cookie);
+    if( [authorizationDelegate respondsToSelector:@selector(dwollaAuthorizationControllerCanceled:)] ) {
+        [authorizationDelegate dwollaAuthorizationControllerCanceled:self];
     }
+    [self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:(id)kCFBooleanTrue afterDelay:0.0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -131,13 +134,14 @@
 	if( [authorizationDelegate respondsToSelector:@selector(dwollaAuthorizationControllerSucceeded:)] ) {
         [authorizationDelegate dwollaAuthorizationControllerSucceeded:self];
     }
-	[self performSelector:@selector(hideSplash) withObject:nil afterDelay:1.0];
+	[self performSelector:@selector(dismissModalViewControllerAnimated:) withObject:(id)kCFBooleanTrue afterDelay:1.0];
 }
-
 - (void) hideSplash {
+    NSLog(@"Hide");
     //[self dismissModalViewControllerAnimated:NO];
     //[[self parentViewController] dismissModalViewControllerAnimated:YES];
-    //[self dismissModalViewControllerAnimated:YES];
+    [[self modalViewController] dismissModalViewControllerAnimated:YES];
+    NSLog(@"End Hide");
 }
 
 - (BOOL)extractInfoFromHTTPRequest:(NSURLRequest *)request {
