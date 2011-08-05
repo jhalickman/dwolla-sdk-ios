@@ -35,11 +35,11 @@ Usage
 
 		"DwollaOAuthEngineDelegate" and "DwollaAuthorizationControllerDelegate"
 
-1. Next you will need to define 2 variables. A "DwollaOAuthEngine" and a "UIViewController". The Engine will hold the Class which holds a majority of the logic for passing data to and from the Dwolla OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the verification and token processing for the OAuth workflow.
+1. Next you will need to define 2 variables. A ###(DwollaOAuthEngine *)### and a ###(UIViewController *)###. The Engine will hold the Class which holds a majority of the logic for passing data to and from the Dwolla OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the verification and token processing for the OAuth workflow.
 
 1. Next, you need to implement the functions for both Delegates:
 
-	DwollaEngineDelegate
+	###DwollaEngineDelegate###
 
 		#Is called  the AccessToken for storing. Tokens can store themselves with "storeInUserDefaultsWithServiceProviderName:prefix:"
 		- (void)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine setAccessToken:(DwollaToken *)token 
@@ -53,7 +53,7 @@ Usage
 		#Is called  the error to you if a problem occured with a Rest call within the Engine.
 		- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestFailed:(DwollaConnectionID *)identifier withError:(NSError *)error 
 
-	DwollaAuthorizationControllerDelegate
+	###DwollaAuthorizationControllerDelegate###
 
 		#Is called if the user is successfully Authorized.
 		- (void)dwollaAuthorizationControllerSucceeded:(DwollaAuthorizationController *)controller 
@@ -64,9 +64,8 @@ Usage
 		#Is called if the user cancels the Authorization.
 		- (void)dwollaAuthorizationControllerCanceled:(DwollaAuthorizationController *)controller 
 
-1. Next, you need to create your DwollaEngine with your Consumer Key,Secret, Scope, and Callback.
-   NOTE: The callback in this isn't really used, we scrap the URL for the needed results. 
-   Would probably be best if was some sort of a "We are logining you in page".
+1. Next, you need to allocate your ###DwollaEngine### with your ###Consumer Key,Secret, Scope, and Callback###.
+   *NOTE: The callback in this isn't really used, we scrap the URL for the needed results. Would probably be best if was some sort of a "We are logining you in page".*
 
 		dwollaEngine = [[DwollaOAuthEngine 
                      engineWithConsumerKey:@"KEY" 
@@ -75,7 +74,7 @@ Usage
                      callback: @"http://www.<url>.com/" //Needs 'http://' and also trailing '/'
                      delegate:self] retain];  
                      
-1. You can try and make API calls through the dwollaEngine at this point and it will attempt to grab
+1. You can try and make API calls through your ###DwollaEngine variable### at this point and it will attempt to grab
 the AccessToken using the Delegate function we created. If it can't find an Access Token the funciton you 
 called will return 'nil'.
 
