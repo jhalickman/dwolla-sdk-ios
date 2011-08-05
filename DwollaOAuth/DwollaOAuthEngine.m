@@ -11,6 +11,7 @@
 #import "DwollaOAuthEngine.h"
 #import "DwollaDataFetcher.h"
 #import "SBJson.h"
+#import "DwollaXMLReader.h"
 
 static NSString *const dwollaAPIBaseURL = @"https://www.dwolla.com/oauth/rest/";
 static NSString *const dwollaOAuthURL = @"https://www.dwolla.com/oauth/OAuth.ashx";
@@ -308,13 +309,6 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     return connection.identifier;
 }
 
-- (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection {
-    NSString *dataString = [[[NSString alloc] initWithData: [connection data] encoding: NSUTF8StringEncoding] autorelease];
-    NSDictionary *result = (NSDictionary *) [[SBJsonParser new] objectWithString:dataString error:NULL];
-    
-    [engineDelegate dwollaEngine:self requestSucceeded:connection.identifier withResults:result];
-}
-
 - (void)sendRequestWithURL:(NSURL *)url 
                      token:(DwollaToken *)token
                     method:(NSString *)method
@@ -410,25 +404,8 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     [connection resetData];
     
     NSHTTPURLResponse *resp = (NSHTTPURLResponse *)response;
-    int statusCode = [resp statusCode];
-    
-    if( statusCode >= 400 ) {
-        // error response; just abort now
-        NSError *error = [NSError errorWithDomain:@"HTTP" code:statusCode userInfo:nil];
-        if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestFailed:withError:)] ) {
-            [engineDelegate dwollaEngine:self requestFailed:connection.identifier withError:error];
-        }
-        [self closeConnection:connection];
-    }
-    else if( statusCode == 204 ) {
-        // no content; so skip the parsing, and declare success!
-        if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestSucceeded:withResults:)] ) {
-            [engineDelegate dwollaEngine:self requestSucceeded:connection.identifier withResults:nil];
-        }
-        [self closeConnection:connection];
-    }
+    statusCode = [resp statusCode];
 }
-
 
 - (void)connection:(DwollaHTTPURLConnection *)connection didReceiveData:(NSData *)data {
     [connection appendData:data];
@@ -446,15 +423,43 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 
 - (void)connectionDidFinishLoading:(DwollaHTTPURLConnection *)connection {
     NSData *receivedData = [connection data];
-    if( [receivedData length] ) {
-        [self parseConnectionResponse:connection];
+    NSDictionary *result = nil;
+    
+    if( statusCode >= 400 ) {
+        if( [receivedData length] ) {
+            result = [self parseConnectionError:connection];
+        }
+        // error response; just abort now
+        NSError *error = [NSError errorWithDomain:[result objectForKey:@"error"] code:statusCode userInfo:nil];
+        if( [engineDelegate respondsToSelector:@selector(dwollaEngine:requestFailed:withError:)] ) {
+            [engineDelegate dwollaEngine:self requestFailed:connection.identifier withError:error];
+        }
+    } else {
+        if( [receivedData length] ) {
+            result = [self parseConnectionResponse:connection];
+        }
+        
+         [engineDelegate dwollaEngine:self requestSucceeded:connection.identifier withResults:result];
     }
     
     // Release the connection.
     [engineConnections removeObjectForKey:[connection identifier]];
 }
 
+- (NSDictionary *)parseConnectionResponse:(DwollaHTTPURLConnection *)connection {
+    NSString *dataString = [[[NSString alloc] initWithData: [connection data] encoding: NSUTF8StringEncoding] autorelease];
+    NSDictionary *result = (NSDictionary *) [[SBJsonParser new] objectWithString:dataString error:NULL];
+    
+    return result;
+}
 
-
-
+- (NSDictionary *)parseConnectionError:(DwollaHTTPURLConnection *)connection {
+    NSString *dataString = [[[NSString alloc] initWithData: [connection data] encoding: NSUTF8StringEncoding] autorelease];
+    
+    NSError *parseError = nil;
+    NSDictionary *error = [XMLReader dictionaryForXMLString:dataString error:&parseError];
+    NSDictionary *result = [NSDictionary dictionaryWithObject:[[[[error objectForKey:@"Fault"] objectForKey:@"Detail"] objectForKey:@"string"] objectForKey:@"text"] forKey:@"error"];
+    
+    return result;
+}
 @end

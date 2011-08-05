@@ -40,6 +40,8 @@ extern NSString *const DwollaEngineTokenKey;
     DwollaToken*    engineOAuthAccessToken;
     NSString*   engineOAuthVerifier;
     NSMutableDictionary* engineConnections;
+    
+    int statusCode;
 }
 
 @property (nonatomic, readonly) DwollaConsumer *consumer;
@@ -76,7 +78,8 @@ extern NSString *const DwollaEngineTokenKey;
 - (NSURLRequest *)authorizationFormURLRequest;
 
 - (void) setTheVerifier:(NSString *)newVerifier;
-- (void)parseConnectionResponse:(DwollaHTTPURLConnection *)connection;
+- (NSDictionary *)parseConnectionResponse:(DwollaHTTPURLConnection *)connection;
+- (NSDictionary *)parseConnectionError:(DwollaHTTPURLConnection *)connection;
 - (DwollaConnectionID *)accountInformationCurrentUser;
 - (DwollaConnectionID *)balanceCurrentUser;
 - (DwollaConnectionID *)accountInformationForUser:(NSString *) userIdentifier;
