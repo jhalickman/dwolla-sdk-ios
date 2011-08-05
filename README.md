@@ -21,7 +21,7 @@ Installation (XCode 4)
 	1. OAuthConsumer
 	1. SBJSON
 	1. DwollaOAuth
-1. Add the following into "Header Search Paths":
+1. Add the following into "Header Search Paths" and checkmark "RECURSIVE":
 	1. "$(SOURCE_ROOT)/DwollaOAuth"
 	
 ### You should now be able to build successfully ###
@@ -35,14 +35,11 @@ Usage
 
 		"DwollaOAuthEngineDelegate" and "DwollaAuthorizationControllerDelegate"
 
-Next you will need to define 2 variables. A "DwollaOAuthEngine" and a "UIViewController". The Engine 
-will hold the Class which holds a majority of the logic for passing data to and from the Dwolla 
-OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the
-verification and token processing for the OAuth workflow.
+	Next you will need to define 2 variables. A "DwollaOAuthEngine" and a "UIViewController". The Engine will hold the Class which holds a majority of the logic for passing data to and from the Dwolla OAuth REST methods. The "UIViewController" is the authorization view that will pop up to do the verification and token processing for the OAuth workflow.
 
 1. Next, you need to implement the functions for both Delegates:
 
-DwollaEngineDelegate
+	DwollaEngineDelegate
 
 		#Is called  the AccessToken for storing. Tokens can store themselves with "storeInUserDefaultsWithServiceProviderName:prefix:"
 		- (void)dwollaEngineAccessToken:(DwollaOAuthEngine *)engine setAccessToken:(DwollaToken *)token 
@@ -56,7 +53,7 @@ DwollaEngineDelegate
 		#Is called  the error to you if a problem occured with a Rest call within the Engine.
 		- (void)dwollaEngine:(DwollaOAuthEngine *)engine requestFailed:(DwollaConnectionID *)identifier withError:(NSError *)error 
 
-DwollaAuthorizationControllerDelegate
+	DwollaAuthorizationControllerDelegate
 
 		#Is called if the user is successfully Authorized.
 		- (void)dwollaAuthorizationControllerSucceeded:(DwollaAuthorizationController *)controller {
@@ -89,13 +86,15 @@ called will return 'nil'.
      		   [self presentModalViewController:controller animated:YES];
    		}
    		
-	### This will open up the webview, get all tokens, pass them to the Engine and call your Delegate to
-	save them. ###
+	### This will open up the webview, get all tokens, pass them to the Engine and call your Delegate to save them. ###
 	
 	### You NOW should be able to make full calls into the Dwolla API using any of the following functions:###
 		- (DwollaConnectionID *)accountInformationCurrentUser;
+		
 		- (DwollaConnectionID *)balanceCurrentUser;
+		
 		- (DwollaConnectionID *)accountInformationForUser:(NSString *) userIdentifier;
+		
 		- (DwollaConnectionID *)contactSearch:(NSString *) searchString 
                             withLimit:(NSInteger) limit 
                             withTypes:(NSString *) types;
