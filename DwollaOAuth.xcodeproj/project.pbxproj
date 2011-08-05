@@ -9,6 +9,32 @@
 /* Begin PBXBuildFile section */
 		1A0A322713E0BADF00642970 /* DwollaConsumer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A0A322513E0BADF00642970 /* DwollaConsumer.h */; };
 		1A0A322813E0BADF00642970 /* DwollaConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A322613E0BADF00642970 /* DwollaConsumer.m */; };
+		1A2BD64913EC9ECD00AAAA47 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD62F13EC9ECD00AAAA47 /* JSON.h */; };
+		1A2BD64A13EC9ECD00AAAA47 /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63013EC9ECD00AAAA47 /* NSObject+SBJson.h */; };
+		1A2BD64B13EC9ECD00AAAA47 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63113EC9ECD00AAAA47 /* NSObject+SBJson.m */; };
+		1A2BD64C13EC9ECD00AAAA47 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63213EC9ECD00AAAA47 /* SBJson.h */; };
+		1A2BD64D13EC9ECD00AAAA47 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63313EC9ECD00AAAA47 /* SBJsonParser.h */; };
+		1A2BD64E13EC9ECD00AAAA47 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63413EC9ECD00AAAA47 /* SBJsonParser.m */; };
+		1A2BD64F13EC9ECD00AAAA47 /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63513EC9ECD00AAAA47 /* SBJsonStreamParser.h */; };
+		1A2BD65013EC9ECD00AAAA47 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63613EC9ECD00AAAA47 /* SBJsonStreamParser.m */; };
+		1A2BD65113EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63713EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.h */; };
+		1A2BD65213EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63813EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.m */; };
+		1A2BD65313EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63913EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.h */; };
+		1A2BD65413EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63A13EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.m */; };
+		1A2BD65513EC9ECD00AAAA47 /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63B13EC9ECD00AAAA47 /* SBJsonStreamParserState.h */; };
+		1A2BD65613EC9ECD00AAAA47 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63C13EC9ECD00AAAA47 /* SBJsonStreamParserState.m */; };
+		1A2BD65713EC9ECD00AAAA47 /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63D13EC9ECD00AAAA47 /* SBJsonStreamWriter.h */; };
+		1A2BD65813EC9ECD00AAAA47 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD63E13EC9ECD00AAAA47 /* SBJsonStreamWriter.m */; };
+		1A2BD65913EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD63F13EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.h */; };
+		1A2BD65A13EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD64013EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.m */; };
+		1A2BD65B13EC9ECD00AAAA47 /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD64113EC9ECD00AAAA47 /* SBJsonStreamWriterState.h */; };
+		1A2BD65C13EC9ECD00AAAA47 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD64213EC9ECD00AAAA47 /* SBJsonStreamWriterState.m */; };
+		1A2BD65D13EC9ECD00AAAA47 /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD64313EC9ECD00AAAA47 /* SBJsonTokeniser.h */; };
+		1A2BD65E13EC9ECD00AAAA47 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD64413EC9ECD00AAAA47 /* SBJsonTokeniser.m */; };
+		1A2BD65F13EC9ECD00AAAA47 /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD64513EC9ECD00AAAA47 /* SBJsonUTF8Stream.h */; };
+		1A2BD66013EC9ECD00AAAA47 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD64613EC9ECD00AAAA47 /* SBJsonUTF8Stream.m */; };
+		1A2BD66113EC9ECD00AAAA47 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A2BD64713EC9ECD00AAAA47 /* SBJsonWriter.h */; };
+		1A2BD66213EC9ECD00AAAA47 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A2BD64813EC9ECD00AAAA47 /* SBJsonWriter.m */; };
 		1A611BBC13BC03AA00CE40A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A611BBB13BC03AA00CE40A9 /* Foundation.framework */; };
 		1A611C1113BC057900CE40A9 /* DwollaOAuthEngine.h in Headers */ = {isa = PBXBuildFile; fileRef = 1A611C0F13BC057900CE40A9 /* DwollaOAuthEngine.h */; };
 		1A611C1213BC057900CE40A9 /* DwollaOAuthEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A611C1013BC057900CE40A9 /* DwollaOAuthEngine.m */; };
@@ -25,32 +51,6 @@
 		1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70D52813E0B5CB0051A88E /* DwollaToken.m */; };
 		1AFE7AE913EA4C7800E0DF68 /* DwollaDataFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7AE713EA4C7800E0DF68 /* DwollaDataFetcher.h */; };
 		1AFE7AEA13EA4C7800E0DF68 /* DwollaDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7AE813EA4C7800E0DF68 /* DwollaDataFetcher.m */; };
-		1AFE7B4513EA545F00E0DF68 /* JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B2B13EA545F00E0DF68 /* JSON.h */; };
-		1AFE7B4613EA545F00E0DF68 /* NSObject+SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B2C13EA545F00E0DF68 /* NSObject+SBJson.h */; };
-		1AFE7B4713EA545F00E0DF68 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B2D13EA545F00E0DF68 /* NSObject+SBJson.m */; };
-		1AFE7B4813EA545F00E0DF68 /* SBJson.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B2E13EA545F00E0DF68 /* SBJson.h */; };
-		1AFE7B4913EA545F00E0DF68 /* SBJsonParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B2F13EA545F00E0DF68 /* SBJsonParser.h */; };
-		1AFE7B4A13EA545F00E0DF68 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3013EA545F00E0DF68 /* SBJsonParser.m */; };
-		1AFE7B4B13EA545F00E0DF68 /* SBJsonStreamParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3113EA545F00E0DF68 /* SBJsonStreamParser.h */; };
-		1AFE7B4C13EA545F00E0DF68 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3213EA545F00E0DF68 /* SBJsonStreamParser.m */; };
-		1AFE7B4D13EA545F00E0DF68 /* SBJsonStreamParserAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3313EA545F00E0DF68 /* SBJsonStreamParserAccumulator.h */; };
-		1AFE7B4E13EA545F00E0DF68 /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3413EA545F00E0DF68 /* SBJsonStreamParserAccumulator.m */; };
-		1AFE7B4F13EA545F00E0DF68 /* SBJsonStreamParserAdapter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3513EA545F00E0DF68 /* SBJsonStreamParserAdapter.h */; };
-		1AFE7B5013EA545F00E0DF68 /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3613EA545F00E0DF68 /* SBJsonStreamParserAdapter.m */; };
-		1AFE7B5113EA545F00E0DF68 /* SBJsonStreamParserState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3713EA545F00E0DF68 /* SBJsonStreamParserState.h */; };
-		1AFE7B5213EA545F00E0DF68 /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3813EA545F00E0DF68 /* SBJsonStreamParserState.m */; };
-		1AFE7B5313EA545F00E0DF68 /* SBJsonStreamWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3913EA545F00E0DF68 /* SBJsonStreamWriter.h */; };
-		1AFE7B5413EA545F00E0DF68 /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3A13EA545F00E0DF68 /* SBJsonStreamWriter.m */; };
-		1AFE7B5513EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3B13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.h */; };
-		1AFE7B5613EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3C13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.m */; };
-		1AFE7B5713EA545F00E0DF68 /* SBJsonStreamWriterState.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3D13EA545F00E0DF68 /* SBJsonStreamWriterState.h */; };
-		1AFE7B5813EA545F00E0DF68 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B3E13EA545F00E0DF68 /* SBJsonStreamWriterState.m */; };
-		1AFE7B5913EA545F00E0DF68 /* SBJsonTokeniser.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B3F13EA545F00E0DF68 /* SBJsonTokeniser.h */; };
-		1AFE7B5A13EA545F00E0DF68 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B4013EA545F00E0DF68 /* SBJsonTokeniser.m */; };
-		1AFE7B5B13EA545F00E0DF68 /* SBJsonUTF8Stream.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B4113EA545F00E0DF68 /* SBJsonUTF8Stream.h */; };
-		1AFE7B5C13EA545F00E0DF68 /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B4213EA545F00E0DF68 /* SBJsonUTF8Stream.m */; };
-		1AFE7B5D13EA545F00E0DF68 /* SBJsonWriter.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7B4313EA545F00E0DF68 /* SBJsonWriter.h */; };
-		1AFE7B5E13EA545F00E0DF68 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7B4413EA545F00E0DF68 /* SBJsonWriter.m */; };
 		1AFE7C0213EA56A700E0DF68 /* NSMutableURLRequest+Parameters.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7BD913EA56A700E0DF68 /* NSMutableURLRequest+Parameters.h */; };
 		1AFE7C0313EA56A700E0DF68 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AFE7BDA13EA56A700E0DF68 /* NSMutableURLRequest+Parameters.m */; };
 		1AFE7C0413EA56A700E0DF68 /* NSString+URLEncoding.h in Headers */ = {isa = PBXBuildFile; fileRef = 1AFE7BDB13EA56A700E0DF68 /* NSString+URLEncoding.h */; };
@@ -94,6 +94,32 @@
 /* Begin PBXFileReference section */
 		1A0A322513E0BADF00642970 /* DwollaConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaConsumer.h; sourceTree = "<group>"; };
 		1A0A322613E0BADF00642970 /* DwollaConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaConsumer.m; sourceTree = "<group>"; };
+		1A2BD62F13EC9ECD00AAAA47 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		1A2BD63013EC9ECD00AAAA47 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		1A2BD63113EC9ECD00AAAA47 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		1A2BD63213EC9ECD00AAAA47 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		1A2BD63313EC9ECD00AAAA47 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		1A2BD63413EC9ECD00AAAA47 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		1A2BD63513EC9ECD00AAAA47 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		1A2BD63613EC9ECD00AAAA47 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		1A2BD63713EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		1A2BD63813EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		1A2BD63913EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		1A2BD63A13EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		1A2BD63B13EC9ECD00AAAA47 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		1A2BD63C13EC9ECD00AAAA47 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		1A2BD63D13EC9ECD00AAAA47 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		1A2BD63E13EC9ECD00AAAA47 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		1A2BD63F13EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		1A2BD64013EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		1A2BD64113EC9ECD00AAAA47 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		1A2BD64213EC9ECD00AAAA47 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		1A2BD64313EC9ECD00AAAA47 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		1A2BD64413EC9ECD00AAAA47 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		1A2BD64513EC9ECD00AAAA47 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		1A2BD64613EC9ECD00AAAA47 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		1A2BD64713EC9ECD00AAAA47 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		1A2BD64813EC9ECD00AAAA47 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		1A611BB813BC03AA00CE40A9 /* libDwollaOAuth.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libDwollaOAuth.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1A611BBB13BC03AA00CE40A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1A611BBF13BC03AA00CE40A9 /* DwollaOAuth-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DwollaOAuth-Prefix.pch"; sourceTree = "<group>"; };
@@ -113,32 +139,6 @@
 		1A70D52813E0B5CB0051A88E /* DwollaToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaToken.m; sourceTree = "<group>"; };
 		1AFE7AE713EA4C7800E0DF68 /* DwollaDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DwollaDataFetcher.h; sourceTree = "<group>"; };
 		1AFE7AE813EA4C7800E0DF68 /* DwollaDataFetcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DwollaDataFetcher.m; sourceTree = "<group>"; };
-		1AFE7B2B13EA545F00E0DF68 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		1AFE7B2C13EA545F00E0DF68 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
-		1AFE7B2D13EA545F00E0DF68 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
-		1AFE7B2E13EA545F00E0DF68 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
-		1AFE7B2F13EA545F00E0DF68 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		1AFE7B3013EA545F00E0DF68 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		1AFE7B3113EA545F00E0DF68 /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
-		1AFE7B3213EA545F00E0DF68 /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
-		1AFE7B3313EA545F00E0DF68 /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
-		1AFE7B3413EA545F00E0DF68 /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
-		1AFE7B3513EA545F00E0DF68 /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
-		1AFE7B3613EA545F00E0DF68 /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
-		1AFE7B3713EA545F00E0DF68 /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
-		1AFE7B3813EA545F00E0DF68 /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
-		1AFE7B3913EA545F00E0DF68 /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
-		1AFE7B3A13EA545F00E0DF68 /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
-		1AFE7B3B13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
-		1AFE7B3C13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
-		1AFE7B3D13EA545F00E0DF68 /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
-		1AFE7B3E13EA545F00E0DF68 /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
-		1AFE7B3F13EA545F00E0DF68 /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
-		1AFE7B4013EA545F00E0DF68 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
-		1AFE7B4113EA545F00E0DF68 /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
-		1AFE7B4213EA545F00E0DF68 /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
-		1AFE7B4313EA545F00E0DF68 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		1AFE7B4413EA545F00E0DF68 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		1AFE7BD913EA56A700E0DF68 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
 		1AFE7BDA13EA56A700E0DF68 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
 		1AFE7BDB13EA56A700E0DF68 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -194,11 +194,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1A2BD62E13EC9ECD00AAAA47 /* SBJSON */ = {
+			isa = PBXGroup;
+			children = (
+				1A2BD62F13EC9ECD00AAAA47 /* JSON.h */,
+				1A2BD63013EC9ECD00AAAA47 /* NSObject+SBJson.h */,
+				1A2BD63113EC9ECD00AAAA47 /* NSObject+SBJson.m */,
+				1A2BD63213EC9ECD00AAAA47 /* SBJson.h */,
+				1A2BD63313EC9ECD00AAAA47 /* SBJsonParser.h */,
+				1A2BD63413EC9ECD00AAAA47 /* SBJsonParser.m */,
+				1A2BD63513EC9ECD00AAAA47 /* SBJsonStreamParser.h */,
+				1A2BD63613EC9ECD00AAAA47 /* SBJsonStreamParser.m */,
+				1A2BD63713EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.h */,
+				1A2BD63813EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.m */,
+				1A2BD63913EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.h */,
+				1A2BD63A13EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.m */,
+				1A2BD63B13EC9ECD00AAAA47 /* SBJsonStreamParserState.h */,
+				1A2BD63C13EC9ECD00AAAA47 /* SBJsonStreamParserState.m */,
+				1A2BD63D13EC9ECD00AAAA47 /* SBJsonStreamWriter.h */,
+				1A2BD63E13EC9ECD00AAAA47 /* SBJsonStreamWriter.m */,
+				1A2BD63F13EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.h */,
+				1A2BD64013EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.m */,
+				1A2BD64113EC9ECD00AAAA47 /* SBJsonStreamWriterState.h */,
+				1A2BD64213EC9ECD00AAAA47 /* SBJsonStreamWriterState.m */,
+				1A2BD64313EC9ECD00AAAA47 /* SBJsonTokeniser.h */,
+				1A2BD64413EC9ECD00AAAA47 /* SBJsonTokeniser.m */,
+				1A2BD64513EC9ECD00AAAA47 /* SBJsonUTF8Stream.h */,
+				1A2BD64613EC9ECD00AAAA47 /* SBJsonUTF8Stream.m */,
+				1A2BD64713EC9ECD00AAAA47 /* SBJsonWriter.h */,
+				1A2BD64813EC9ECD00AAAA47 /* SBJsonWriter.m */,
+			);
+			path = SBJSON;
+			sourceTree = "<group>";
+		};
 		1A611BAD13BC03AA00CE40A9 = {
 			isa = PBXGroup;
 			children = (
+				1A2BD62E13EC9ECD00AAAA47 /* SBJSON */,
 				1AFE7BD713EA56A700E0DF68 /* OAuthConsumer */,
-				1AFE7B2A13EA545F00E0DF68 /* SBJSON */,
 				1A611BBD13BC03AA00CE40A9 /* DwollaOAuth */,
 				1A611BBA13BC03AA00CE40A9 /* Frameworks */,
 				1A611BB913BC03AA00CE40A9 /* Products */,
@@ -253,40 +286,6 @@
 				1A6120B113BC1FDE00CE40A9 /* NSString+UUID.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		1AFE7B2A13EA545F00E0DF68 /* SBJSON */ = {
-			isa = PBXGroup;
-			children = (
-				1AFE7B2B13EA545F00E0DF68 /* JSON.h */,
-				1AFE7B2C13EA545F00E0DF68 /* NSObject+SBJson.h */,
-				1AFE7B2D13EA545F00E0DF68 /* NSObject+SBJson.m */,
-				1AFE7B2E13EA545F00E0DF68 /* SBJson.h */,
-				1AFE7B2F13EA545F00E0DF68 /* SBJsonParser.h */,
-				1AFE7B3013EA545F00E0DF68 /* SBJsonParser.m */,
-				1AFE7B3113EA545F00E0DF68 /* SBJsonStreamParser.h */,
-				1AFE7B3213EA545F00E0DF68 /* SBJsonStreamParser.m */,
-				1AFE7B3313EA545F00E0DF68 /* SBJsonStreamParserAccumulator.h */,
-				1AFE7B3413EA545F00E0DF68 /* SBJsonStreamParserAccumulator.m */,
-				1AFE7B3513EA545F00E0DF68 /* SBJsonStreamParserAdapter.h */,
-				1AFE7B3613EA545F00E0DF68 /* SBJsonStreamParserAdapter.m */,
-				1AFE7B3713EA545F00E0DF68 /* SBJsonStreamParserState.h */,
-				1AFE7B3813EA545F00E0DF68 /* SBJsonStreamParserState.m */,
-				1AFE7B3913EA545F00E0DF68 /* SBJsonStreamWriter.h */,
-				1AFE7B3A13EA545F00E0DF68 /* SBJsonStreamWriter.m */,
-				1AFE7B3B13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.h */,
-				1AFE7B3C13EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.m */,
-				1AFE7B3D13EA545F00E0DF68 /* SBJsonStreamWriterState.h */,
-				1AFE7B3E13EA545F00E0DF68 /* SBJsonStreamWriterState.m */,
-				1AFE7B3F13EA545F00E0DF68 /* SBJsonTokeniser.h */,
-				1AFE7B4013EA545F00E0DF68 /* SBJsonTokeniser.m */,
-				1AFE7B4113EA545F00E0DF68 /* SBJsonUTF8Stream.h */,
-				1AFE7B4213EA545F00E0DF68 /* SBJsonUTF8Stream.m */,
-				1AFE7B4313EA545F00E0DF68 /* SBJsonWriter.h */,
-				1AFE7B4413EA545F00E0DF68 /* SBJsonWriter.m */,
-			);
-			name = SBJSON;
-			path = Classes;
 			sourceTree = "<group>";
 		};
 		1AFE7BD713EA56A700E0DF68 /* OAuthConsumer */ = {
@@ -367,20 +366,6 @@
 				1A70D52913E0B5CB0051A88E /* DwollaToken.h in Headers */,
 				1A0A322713E0BADF00642970 /* DwollaConsumer.h in Headers */,
 				1AFE7AE913EA4C7800E0DF68 /* DwollaDataFetcher.h in Headers */,
-				1AFE7B4513EA545F00E0DF68 /* JSON.h in Headers */,
-				1AFE7B4613EA545F00E0DF68 /* NSObject+SBJson.h in Headers */,
-				1AFE7B4813EA545F00E0DF68 /* SBJson.h in Headers */,
-				1AFE7B4913EA545F00E0DF68 /* SBJsonParser.h in Headers */,
-				1AFE7B4B13EA545F00E0DF68 /* SBJsonStreamParser.h in Headers */,
-				1AFE7B4D13EA545F00E0DF68 /* SBJsonStreamParserAccumulator.h in Headers */,
-				1AFE7B4F13EA545F00E0DF68 /* SBJsonStreamParserAdapter.h in Headers */,
-				1AFE7B5113EA545F00E0DF68 /* SBJsonStreamParserState.h in Headers */,
-				1AFE7B5313EA545F00E0DF68 /* SBJsonStreamWriter.h in Headers */,
-				1AFE7B5513EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.h in Headers */,
-				1AFE7B5713EA545F00E0DF68 /* SBJsonStreamWriterState.h in Headers */,
-				1AFE7B5913EA545F00E0DF68 /* SBJsonTokeniser.h in Headers */,
-				1AFE7B5B13EA545F00E0DF68 /* SBJsonUTF8Stream.h in Headers */,
-				1AFE7B5D13EA545F00E0DF68 /* SBJsonWriter.h in Headers */,
 				1AFE7C0213EA56A700E0DF68 /* NSMutableURLRequest+Parameters.h in Headers */,
 				1AFE7C0413EA56A700E0DF68 /* NSString+URLEncoding.h in Headers */,
 				1AFE7C0613EA56A700E0DF68 /* NSURL+Base.h in Headers */,
@@ -401,6 +386,20 @@
 				1AFE7C2313EA56A700E0DF68 /* OAToken.h in Headers */,
 				1AFE7C2513EA56A700E0DF68 /* OATokenManager.h in Headers */,
 				1AFE7C2713EA56A700E0DF68 /* OAuthConsumer.h in Headers */,
+				1A2BD64913EC9ECD00AAAA47 /* JSON.h in Headers */,
+				1A2BD64A13EC9ECD00AAAA47 /* NSObject+SBJson.h in Headers */,
+				1A2BD64C13EC9ECD00AAAA47 /* SBJson.h in Headers */,
+				1A2BD64D13EC9ECD00AAAA47 /* SBJsonParser.h in Headers */,
+				1A2BD64F13EC9ECD00AAAA47 /* SBJsonStreamParser.h in Headers */,
+				1A2BD65113EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.h in Headers */,
+				1A2BD65313EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.h in Headers */,
+				1A2BD65513EC9ECD00AAAA47 /* SBJsonStreamParserState.h in Headers */,
+				1A2BD65713EC9ECD00AAAA47 /* SBJsonStreamWriter.h in Headers */,
+				1A2BD65913EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.h in Headers */,
+				1A2BD65B13EC9ECD00AAAA47 /* SBJsonStreamWriterState.h in Headers */,
+				1A2BD65D13EC9ECD00AAAA47 /* SBJsonTokeniser.h in Headers */,
+				1A2BD65F13EC9ECD00AAAA47 /* SBJsonUTF8Stream.h in Headers */,
+				1A2BD66113EC9ECD00AAAA47 /* SBJsonWriter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -462,18 +461,6 @@
 				1A70D52A13E0B5CB0051A88E /* DwollaToken.m in Sources */,
 				1A0A322813E0BADF00642970 /* DwollaConsumer.m in Sources */,
 				1AFE7AEA13EA4C7800E0DF68 /* DwollaDataFetcher.m in Sources */,
-				1AFE7B4713EA545F00E0DF68 /* NSObject+SBJson.m in Sources */,
-				1AFE7B4A13EA545F00E0DF68 /* SBJsonParser.m in Sources */,
-				1AFE7B4C13EA545F00E0DF68 /* SBJsonStreamParser.m in Sources */,
-				1AFE7B4E13EA545F00E0DF68 /* SBJsonStreamParserAccumulator.m in Sources */,
-				1AFE7B5013EA545F00E0DF68 /* SBJsonStreamParserAdapter.m in Sources */,
-				1AFE7B5213EA545F00E0DF68 /* SBJsonStreamParserState.m in Sources */,
-				1AFE7B5413EA545F00E0DF68 /* SBJsonStreamWriter.m in Sources */,
-				1AFE7B5613EA545F00E0DF68 /* SBJsonStreamWriterAccumulator.m in Sources */,
-				1AFE7B5813EA545F00E0DF68 /* SBJsonStreamWriterState.m in Sources */,
-				1AFE7B5A13EA545F00E0DF68 /* SBJsonTokeniser.m in Sources */,
-				1AFE7B5C13EA545F00E0DF68 /* SBJsonUTF8Stream.m in Sources */,
-				1AFE7B5E13EA545F00E0DF68 /* SBJsonWriter.m in Sources */,
 				1AFE7C0313EA56A700E0DF68 /* NSMutableURLRequest+Parameters.m in Sources */,
 				1AFE7C0513EA56A700E0DF68 /* NSString+URLEncoding.m in Sources */,
 				1AFE7C0713EA56A700E0DF68 /* NSURL+Base.m in Sources */,
@@ -492,6 +479,18 @@
 				1AFE7C2113EA56A700E0DF68 /* OAServiceTicket.m in Sources */,
 				1AFE7C2413EA56A700E0DF68 /* OAToken.m in Sources */,
 				1AFE7C2613EA56A700E0DF68 /* OATokenManager.m in Sources */,
+				1A2BD64B13EC9ECD00AAAA47 /* NSObject+SBJson.m in Sources */,
+				1A2BD64E13EC9ECD00AAAA47 /* SBJsonParser.m in Sources */,
+				1A2BD65013EC9ECD00AAAA47 /* SBJsonStreamParser.m in Sources */,
+				1A2BD65213EC9ECD00AAAA47 /* SBJsonStreamParserAccumulator.m in Sources */,
+				1A2BD65413EC9ECD00AAAA47 /* SBJsonStreamParserAdapter.m in Sources */,
+				1A2BD65613EC9ECD00AAAA47 /* SBJsonStreamParserState.m in Sources */,
+				1A2BD65813EC9ECD00AAAA47 /* SBJsonStreamWriter.m in Sources */,
+				1A2BD65A13EC9ECD00AAAA47 /* SBJsonStreamWriterAccumulator.m in Sources */,
+				1A2BD65C13EC9ECD00AAAA47 /* SBJsonStreamWriterState.m in Sources */,
+				1A2BD65E13EC9ECD00AAAA47 /* SBJsonTokeniser.m in Sources */,
+				1A2BD66013EC9ECD00AAAA47 /* SBJsonUTF8Stream.m in Sources */,
+				1A2BD66213EC9ECD00AAAA47 /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
