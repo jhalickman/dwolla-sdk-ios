@@ -168,7 +168,26 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
 }
 
 - (DwollaConnectionID *)contactSearch:(NSString *) searchString withLimit:(NSInteger) limit withTypes:(NSString *) types {
-    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/contacts?search=%@&limit=%@&types=%@", searchString, [NSString stringWithFormat:@"%d", limit], types]]];
+    
+    NSMutableArray* parameters = [[NSMutableArray alloc] init];
+    
+    if (searchString != nil) {
+        [parameters addObject:[NSString stringWithFormat:@"search=%@",searchString]];
+    }
+    if (limit > 0) {
+        [parameters addObject:[NSString stringWithFormat:@"limit=%@", [NSString stringWithFormat:@"%d", limit]]];
+    }
+    if (types != nil) {
+        [parameters addObject:[NSString stringWithFormat:@"types=%@",types]];
+    }
+    
+    NSString* parameterString = @"";
+    
+    if ([parameters count] > 0) {
+        parameterString = [NSString stringWithFormat:@"?%@", [parameters componentsJoinedByString:@"&"]];
+    }
+    
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:[NSString stringWithFormat:@"accountapi/contacts%@", parameterString]]];
         
     return [self sendAPIRequestWithURL:url HTTPMethod:@"GET" body:nil];
 }
