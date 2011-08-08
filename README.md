@@ -8,7 +8,7 @@ Simple library for gaining access to the Dwolla OAuth Rest APIs with only a few 
 Documentation & Example Code
 ===========
 
-Documentation is provided below and an example at https://github.com/Dwolla/Mobile-SDK.
+Documentation is provided below and an example at https://github.com/Dwolla/Dwolla-Mobile-SDK.
 	
 ### Here is another list of project examples which use the OAuth System. ###
 	https://github.com/armsteadj1/DwollaTap
