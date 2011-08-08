@@ -17,12 +17,17 @@ Installation (XCode 4)
 
 1. Download or Use Git Submodule
 	1. Adding a git submodule to your project by using `git submodule add git://github.com/dwolla/dwolla-sdk-ios.git DwollaOAuth`
-1. Use the "Add files to "...."" feature in XCode 4 to include the following folders:
-	1. OAuthConsumer
-	1. SBJSON
-	1. DwollaOAuth
-1. Add the following into "Header Search Paths" and checkmark "RECURSIVE":
-	1. "$(SOURCE_ROOT)/DwollaOAuth"
+1. Use the "Add files to "...."" feature in XCode 4 to include the DwollaOAuth submodule folder:
+	1. Make sure "Create groups for any folders" is checked.
+	
+	OR
+
+1. Download or Use Git Submodule
+	1. Adding a git submodule to your project by using `git submodule add git://github.com/dwolla/dwolla-sdk-ios.git DwollaOAuth`
+1. Use the "Add files to "...."" feature in XCode 4 to include each folder in the DwollaOAuth submodule folder:
+	1. Make sure "Create groups for any folders" is checked.
+	
+(I'm not sure which one is the best, if you have a better idea on how to include these let me know)
 	
 ### You should now be able to build successfully ###
 
