@@ -8,7 +8,10 @@ Simple library for gaining access to the Dwolla OAuth Rest APIs with only a few 
 Documentation & Example Code
 ===========
 
-Documentation is provided below and an example at https://github.com/dwolla/DwollaOAuthDemo.
+Documentation is provided below and an example at https://github.com/Dwolla/Mobile-SDK.
+	
+	### Here is another list of project examples which use the OAuth System. ###
+	https://github.com/armsteadj1/DwollaTap
 
 -------------------------
 
@@ -16,7 +19,7 @@ Installation (XCode 4)
 ===========
 
 1. Download or Use Git Submodule
-	1. Adding a git submodule to your project by using `git submodule add https://armsteadj1@github.com/Dwolla/dwolla-sdk-ios.git DwollaOAuth`
+	1. Adding a git submodule to your project by using `git submodule add git@github.com:Dwolla/dwolla-sdk-ios.git DwollaOAuth`
 1. Use the "Add files to "...."" feature in XCode 4 to include the DwollaOAuth submodule folder:
 	1. Make sure "Create groups for any folders" is checked.
 	
