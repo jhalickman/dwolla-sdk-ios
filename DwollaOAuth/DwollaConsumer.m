@@ -69,7 +69,9 @@
 
 - (NSString *) strippedCallback 
 {
-    NSString *tempURL = callback;
+    NSURL *url = [NSURL URLWithString: callback];
+    NSString *tempURL = [url host];
+    
     tempURL = [tempURL stringByReplacingOccurrencesOfString:@"/"
                                                  withString:@""];
     tempURL = [tempURL stringByReplacingOccurrencesOfString:@"http:"
