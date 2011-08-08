@@ -16,7 +16,7 @@ Installation (XCode 4)
 ===========
 
 1. Download or Use Git Submodule
-	1. Adding a git submodule to your project by using `git submodule add git://github.com/dwolla/dwolla-sdk-ios.git DwollaOAuth`
+	1. Adding a git submodule to your project by using `git submodule add https://armsteadj1@github.com/Dwolla/dwolla-sdk-ios.git DwollaOAuth`
 1. Use the "Add files to "...."" feature in XCode 4 to include the DwollaOAuth submodule folder:
 	1. Make sure "Create groups for any folders" is checked.
 	
