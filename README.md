@@ -10,7 +10,7 @@ Documentation & Example Code
 
 Documentation is provided below and an example at https://github.com/Dwolla/Mobile-SDK.
 	
-	### Here is another list of project examples which use the OAuth System. ###
+### Here is another list of project examples which use the OAuth System. ###
 	https://github.com/armsteadj1/DwollaTap
 
 -------------------------
