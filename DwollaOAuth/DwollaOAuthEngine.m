@@ -275,6 +275,23 @@ NSString *const DwollaEngineTokenKey                 = @"DwollaEngineTokenKey";
     return [self sendAPIRequestWithURL:url HTTPMethod:@"POST" body:body];
 }
 
+- (DwollaConnectionID *)sendMoneyWithPin:(NSString *) pin 
+                       withDestinationId:(NSString *) destinationId 
+                              withAmount:(NSDecimalNumber *) amount 
+                               withNotes:(NSString *) note 
+                     withDestinationType:(NSString *) type 
+                          withAssumeCost:(BOOL) assumeCost 
+                         withFundsSource:(NSString *) fundSource
+                         withFacilitatorAmount:(NSDecimalNumber *) facilitatorAmount
+{
+    NSURL* url = [NSURL URLWithString:[dwollaAPIBaseURL stringByAppendingString:@"accountapi/send"]];
+    
+    NSString* json = [NSString stringWithFormat:@"{\"pin\":\"%@\", \"destinationId\":\"%@\", \"amount\":%@, \"notes\":\"%@\", \"destinationType\":\"%@\", \"assumeCosts\":\"%@\", \"fundsSource\":\"%@\", \"facilitatorAmount\":\"%@\"}", pin, destinationId, amount, note, type, (assumeCost ? @"true" : @"false"), fundSource, facilitatorAmount];
+    NSData* body = [json dataUsingEncoding:NSUTF8StringEncoding];
+    
+    return [self sendAPIRequestWithURL:url HTTPMethod:@"POST" body:body];
+}
+
 
 #pragma mark private
 
