@@ -108,6 +108,12 @@ extern NSString *const DwollaEngineTokenKey;
                          withFundsSource:(NSString *) fundSource
                    withFacilitatorAmount:(NSDecimalNumber *) facilitatorAmount;
 
+- (DwollaConnectionID *)requestMoneyWithPin:(NSString *) pin 
+                               withSourceId:(NSString *) sourceId 
+                                 withAmount:(NSDecimalNumber *) amount 
+                                  withNotes:(NSString *) note 
+                             withSourceType:(NSString *) type 
+                      withFacilitatorAmount:(NSDecimalNumber *) facilitatorAmount;
 
 - (DwollaConnectionID *)nearbySearchWithLongitude:(NSString *) longitude 
                                      withLatitude:(NSString *) latitude 
